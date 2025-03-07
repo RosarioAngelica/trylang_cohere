@@ -52,13 +52,22 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.reservation-illustration {
+  position: absolute;
+  top: 80%;
+  right: 5%;
+  transform: translateY(-50%);
+  width: 650px; /* Adjust the size as needed */
+  height: auto;
+}
+
 h2 {
   text-align: center;
   font-size: 24px;
 }
 
 .form-group {
-  display: flex;
+  display: flex;;
   flex-direction: column;
   margin-bottom: 15px;
 }
