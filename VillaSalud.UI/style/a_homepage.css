@@ -1,160 +1,160 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Playfair Display', serif;
-    background: beige;
+  margin: 0;
+  padding: 0;
+  font-family: "Playfair Display", serif;
+  background: beige;
 }
 
 .header-image {
-    width: 100%;
-    height: 90px;
-    background: url('../assets/background_picture.jpeg') no-repeat center center/cover;
+  width: 100%;
+  height: 90px;
+  background: url("../assets/background_picture.jpeg") no-repeat center
+    center/cover;
 }
 
 .navbar {
-    display: flex;
-    justify-content: center;
-    background: white;
-    padding: 10px 0;
-    border-bottom: 2px solid black;
+  display: flex;
+  justify-content: center;
+  background: white;
+  padding: 10px 0;
+  border-bottom: 2px solid black;
 }
 
 .navbar ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    gap: 30px;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 30px;
 }
 
 .navbar li {
-    display: inline;
+  display: inline;
 }
 
 .navbar a {
-    text-decoration: none;
-    color: black;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 5px 10px;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 10px;
 }
 
 .navbar a.active {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-/* Banner Section */
 .banner-container {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
 }
 
 .banner {
-    background: #007B3D;
-    color: white;
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 12px;
-    width: 80%; 
-    max-width: 900px; 
-    border-radius: 10px; 
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+  background: #007b3d;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px;
+  width: 80%;
+  max-width: 900px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .packages {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 30px;
 }
 
 .package-card {
-    width: 250px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    padding-bottom: 15px;
-    position: relative;
+  width: 250px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding-bottom: 15px;
+  position: relative;
 }
 
 .package-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 .package-card h3 {
-    font-size: 18px;
-    margin: 10px 0;
-    cursor: pointer; 
+  font-size: 18px;
+  margin: 10px 0;
+  cursor: pointer;
 }
 
 .package-card .btn {
-    display: inline-block;
-    background: #007B3D;
-    color: white;
-    padding: 8px 15px;
-    margin: 5px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
+  display: inline-block;
+  background: #007b3d;
+  color: white;
+  padding: 8px 15px;
+  margin: 5px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
 }
 
 .package-card .btn:hover {
-    background: #00592A;
+  background: #00592a;
 }
 
 .package-card .edit-btn {
-    background: #FFA500;
+  background: #ffa500;
 }
 
 .package-card .edit-btn:hover {
-    background: #CC8400;
+  background: #cc8400;
 }
 
 .package-card .delete-btn {
-    background: #DC3545;
+  background: #dc3545;
 }
 
 .package-card .delete-btn:hover {
-    background: #A71D2A;
+  background: #a71d2a;
 }
 
 #addPackageBtn {
-    display: block;
-    margin: 20px auto;
-    background: #28A745;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  background: #28a745;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #addPackageBtn:hover {
-    background: #218838;
+  background: #218838;
 }
 
 .image-input {
-    display: block;
-    margin: 5px auto;
+  display: block;
+  margin: 5px auto;
 }
 
 .buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .image-input {
-    display: block;
-    margin: 10px auto;
-    text-align: center;
+  display: block;
+  margin: 10px auto;
+  text-align: center;
 }

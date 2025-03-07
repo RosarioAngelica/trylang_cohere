@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!hasSpecialChar) {
       return "Password must contain at least one special character.";
     }
-    return null; 
+    return null;
   }
 
   loginForm.addEventListener("submit", function (event) {
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (errorMessage) {
       event.preventDefault();
-      alert(errorMessage); 
+      alert(errorMessage);
     }
   });
 });

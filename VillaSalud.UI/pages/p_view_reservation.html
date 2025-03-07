@@ -1,58 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>View Reservation</title>
-    <link rel="stylesheet" href="../style/p_view_reservation.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="../style/p_view_reservation.css" />
+  </head>
+  <body>
     <header class="header-image"></header>
 
     <nav class="navbar">
-        <ul>
-            <li><a href="p_homepage.html">Home</a></li>
-            <li><a href="#" class="active">View Reservation</a></li>
-            <li><a href="#">Make Reservation</a></li>
-            <li><a href="feedback.html">Feedback</a></li>
-        </ul>
+      <ul>
+        <li><a href="p_homepage.html">Home</a></li>
+        <li><a href="#" class="active">View Reservation</a></li>
+        <li><a href="#">Make Reservation</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
     </nav>
 
     <div class="reservation-container">
-        
-        <div class="reservation-notes">
-            <h2>Reminders</h2>
-            <p><strong>Note:</strong></p>
+      <div class="reservation-notes">
+        <h2>Reminders</h2>
+        <p><strong>Note:</strong></p>
+        <ul>
+          <li>
+            Right-click on any date to see options:
             <ul>
-                <li>Right-click on any date to see options:
-                    <ul>
-                        <li>Check Availability</li>
-                    </ul>
-                </li>
+              <li>Check Availability</li>
             </ul>
-            <p><strong>Please note:</strong> Dates marked in red are unavailable.</p>
-            <button class="view-details">View Details</button>
-        </div>
-        
-        <div class="calendar">
-            <button class="prev-month">&#9665;</button>
-            <button class="next-month">&#9655;</button>
-            <div class="month">
-                <h3 id="month-year"></h3>
-                <table id="calendar-table">
-                    <thead>
-                        <tr>
-                            <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
-                        </tr>
-                    </thead>
-                    <tbody id="calendar-body"></tbody>
-                </table>
-            </div>
-        </div>
+          </li>
+        </ul>
+        <p>
+          <strong>Please note:</strong> Dates marked in red are unavailable.
+        </p>
+        <button class="view-details">View Details</button>
+      </div>
 
+      <div class="calendar">
+        <button class="prev-month">&#9665;</button>
+        <button class="next-month">&#9655;</button>
+        <div class="month">
+          <h3 id="month-year"></h3>
+          <table id="calendar-table">
+            <thead>
+              <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+              </tr>
+            </thead>
+            <tbody id="calendar-body"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
     <script src="../script/p_view_reservation.js"></script>
-</body>
+  </body>
 </html>

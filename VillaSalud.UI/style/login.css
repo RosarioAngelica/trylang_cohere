@@ -15,3 +15,81 @@
 .checkbox-container label {
   cursor: pointer;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Playfair Display", serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: beige;
+}
+
+.container {
+  display: flex;
+  width: 80%;
+  max-width: 1200px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.left-section {
+  width: 50%;
+  padding: 40px;
+}
+
+.right-section {
+  width: 50%;
+  background: url("../assets/background_picture.jpeg") no-repeat center
+    center/cover;
+}
+
+h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+.signup-box {
+  margin-top: 20px;
+  border: 2px solid #007b3d;
+  padding: 20px;
+  background: white;
+}
+
+h2 {
+  font-size: 22px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  background: #007b3d;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 10px;
+}
