@@ -16,7 +16,7 @@ body {
   display: flex;
   justify-content: center;
   background: white;
-  padding: 15px 0;
+  padding: 10px 0;
   border-bottom: 2px solid black;
 }
 
@@ -24,7 +24,7 @@ body {
   list-style: none;
   padding: 0;
   display: flex;
-  gap: 40px;
+  gap: 30px;
 }
 
 .navbar li {
@@ -36,11 +36,30 @@ body {
   color: black;
   font-size: 18px;
   font-weight: bold;
-  padding: 8px 12px;
+  padding: 5px 10px;
 }
 
 .navbar a.active {
   text-decoration: underline;
+}
+
+.banner-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.banner {
+  background: #007b3d;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px;
+  width: 50%;
+  max-width: 500%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .reservation-container {
@@ -78,7 +97,7 @@ body {
 }
 
 button.view-details {
-  background-color: green;
+  background-color: #007b3d;
   color: white;
   padding: 12px 15px;
   border: none;
@@ -86,6 +105,24 @@ button.view-details {
   cursor: pointer;
   margin-top: 15px;
   transition: background 0.3s ease;
+}
+
+button.view-details:hover {
+  background-color: darkgreen;
+}
+
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 button.view-details:hover {

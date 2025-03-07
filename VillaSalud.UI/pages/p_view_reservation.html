@@ -18,22 +18,30 @@
       </ul>
     </nav>
 
+    <section class="banner-container">
+      <div class="banner">
+        <div class="banner-header">
+        <h2>Reminders</h2>
+            <p>
+                <strong>Note:</strong> Right-click on any date to see options, such as 
+                <strong>Check Availability</strong>. 
+                <div> Please be aware that dates marked in red are unavailable.</div> 
+            </p>
+      </div>
+    </section>
+
     <div class="reservation-container">
       <div class="reservation-notes">
-        <h2>Reminders</h2>
-        <p><strong>Note:</strong></p>
-        <ul>
-          <li>
-            Right-click on any date to see options:
-            <ul>
-              <li>Check Availability</li>
-            </ul>
-          </li>
-        </ul>
-        <p>
-          <strong>Please note:</strong> Dates marked in red are unavailable.
-        </p>
-        <button class="view-details">View Details</button>
+        <h2>Reservation Form</h2>
+        <p>To view your reservation form, please enter your 
+          Appointment Code and Email Address, then click "View Details."</p>
+        <form>
+          <label for="reservation-code">Reservation Code:</label>
+          <input type="text" id="reservation-code" name="reservation-code" required>
+          <label for="email">Email Address:</label>
+          <input type="email" id="email" name="email" required>
+          <button type="submit" class="view-details">View Details</button>
+        </form>
       </div>
 
       <div class="calendar">
