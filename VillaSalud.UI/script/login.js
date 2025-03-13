@@ -3,9 +3,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const showPasswordCheckbox = document.getElementById("show-password");
   const loginForm = document.getElementById("login-form");
 
-  showPasswordCheckbox.addEventListener("change", function () {
-    passwordInput.type = this.checked ? "text" : "password";
-  });
+  if (passwordInput && showPasswordCheckbox) {
+    showPasswordCheckbox.addEventListener("change", function () {
+      passwordInput.type = this.checked ? "text" : "password";
+    });
+  }
 
   function validatePassword(password) {
     const minLength = 8;
@@ -32,13 +34,15 @@ document.addEventListener("DOMContentLoaded", function () {
     return null;
   }
 
-  loginForm.addEventListener("submit", function (event) {
-    const password = passwordInput.value;
-    const errorMessage = validatePassword(password);
+  if (loginForm && passwordInput) {
+    loginForm.addEventListener("submit", function (event) {
+      const password = passwordInput.value.trim();
+      const errorMessage = validatePassword(password);
 
-    if (errorMessage) {
-      event.preventDefault();
-      alert(errorMessage);
-    }
-  });
+      if (errorMessage) {
+        event.preventDefault();
+        alert(errorMessage);
+      }
+    });
+  }
 });
