@@ -1,28 +1,25 @@
 <?php
-
 include 'db_connect.php';
 
-// Enable error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if all form fields are filled
-    if (!empty($_POST['email']) && !empty($_POST['f_name']) && !empty($_POST['l_name']) && !empty($_POST['phone']) && !empty($_POST['password'])) {
-
-        // Get form data and sanitize
+    if (!empty($_POST['email']) && !empty($_POST['f_name']) 
+        && !empty($_POST['l_name']) && !empty($_POST['phone']) 
+        && !empty($_POST['password'])) {
         $email = $conn->real_escape_string($_POST['email']);
         $f_name = $conn->real_escape_string($_POST['f_name']);
         $l_name = $conn->real_escape_string($_POST['l_name']);
         $phone = $conn->real_escape_string($_POST['phone']);
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash password for security
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT); 
 
-        // Insert data into the database
         $sql = "INSERT INTO admin (email, f_name, l_name, phone, password) 
-                VALUES ('$email', '$f_name', '$l_name', '$phone', '$password')";
+            VALUES ('$email', '$f_name', '$l_name', '$phone', '$password')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "<script>alert('Signup successful!'); window.location.href='login.php';</script>";
+            echo "<script>alert('Signup successful!'); 
+                    window.location.href='login.php';</script>";
         } else {
             echo "<script>alert('Error: " . $conn->error . "');</script>";
         }
@@ -48,8 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="left-section">
             <h1>Welcome to Villa Salud Catering System</h1>
             <p>
-                Enter your personal details to complete your reservation and access
-                all system features.
+                Enter your personal details to complete your 
+                reservation and access all system features.
             </p>
             <div class="signup-box">
                 <h2>Create Account</h2>
@@ -73,12 +70,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="submit">Sign In</button>
                 </form>
                 <p class="login-link">
-                    Already have an account? <a href="../pages/login.php">Log in here!</a>
+                    Already have an account? <a href="../pages/login.php">
+                        Log in here!</a>
                 </p>
             </div>
         </div>
         <div class="right-section"></div>
     </div>
 </body>
-
 </html>

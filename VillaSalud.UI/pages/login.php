@@ -7,7 +7,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
     if (empty($email) || empty($password)) {
-        echo "<script>alert('Email and password are required!'); window.history.back();</script>";
+        echo "<script>alert('Email and password are required!'); 
+            window.history.back();</script>";
         exit;
     }
 
@@ -20,18 +21,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $admin = $result->fetch_assoc();
 
         if (password_verify($password, $admin['password'])) {
-            // Store session variables
             $_SESSION["admin_id"] = $admin["id"];
-            $_SESSION["admin_name"] = $admin["f_name"] . " " . $admin["l_name"];
+            $_SESSION["admin_name"] = $admin["f_name"] . " ". $admin["l_name"];
             $_SESSION["phone"] = $admin["phone"];
 
-            // Redirect to a_homepage.html
-            echo "<script>alert('Login successful!'); window.location.href='a_homepage.html';</script>";
+            echo "<script>alert('Login successful!'); 
+                window.location.href='a_homepage.html';</script>";
         } else {
-            echo "<script>alert('Incorrect password!'); window.history.back();</script>";
+            echo "<script>alert('Incorrect password!'); 
+                window.history.back();</script>";
         }
     } else {
-        echo "<script>alert('No account found with this email!'); window.history.back();</script>";
+        echo "<script>alert('No account found with this email!'); 
+            window.history.back();</script>";
     }
 
     $stmt->close();
@@ -62,7 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="email" name="email" required>
 
                     <label>Password:</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" 
+                        name="password" required>
 
                     <div class="checkbox-container">
                         <input type="checkbox" id="show-password">
@@ -72,8 +75,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php
                     session_start();
                     if (isset($_SESSION['error'])) {
-                        echo "<p style='color:red;'>" . $_SESSION['error'] . "</p>";
-                        unset($_SESSION['error']); // Clear error after showing it
+                        echo "<p style='color:red;'>" 
+                            .$_SESSION['error'] . "</p>";
+                        unset($_SESSION['error']); 
                     }
                     ?>
 
@@ -84,5 +88,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="right-section"></div>
     </div>
 </body>
-
 </html>
