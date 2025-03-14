@@ -2,6 +2,10 @@
 session_start();
 include 'db_connect.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
     $password = $_POST["password"];
@@ -71,16 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="checkbox" id="show-password">
                         <label for="show-password">Show Password</label>
                     </div>
-
-                    <?php
-                    session_start();
-                    if (isset($_SESSION['error'])) {
-                        echo "<p style='color:red;'>" 
-                            .$_SESSION['error'] . "</p>";
-                        unset($_SESSION['error']); 
-                    }
-                    ?>
-
                     <button type="submit">Log In</button>
                 </form>
             </div>
