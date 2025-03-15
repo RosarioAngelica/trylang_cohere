@@ -2,14 +2,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Playfair Display", serif;
-  background: beige;
+  background: #f5f5dc; /* Beige background */
 }
 
 .header-image {
   width: 100%;
   height: 90px;
-  background: url("../assets/background_picture.jpeg") no-repeat center
-    center/cover;
+  background: url("../assets/background_picture.jpeg") no-repeat center center/cover;
 }
 
 .navbar {
@@ -43,8 +42,12 @@ body {
   text-decoration: underline;
 }
 
-.reservation-container {
-  max-width: 600px;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  max-width: 1200px;
   margin: 50px auto;
   padding: 20px;
   background: white;
@@ -52,36 +55,32 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.reservation-illustration {
-  position: absolute;
-  top: 80%;
-  right: 5%;
-  transform: translateY(-50%);
-  width: 650px; /* Adjust the size as needed */
-  height: auto;
+.reservation-container {
+  width: 50%;
 }
 
-h2 {
-  text-align: center;
-  font-size: 24px;
+.reservation-container h2 {
+  text-align: left;
+  color: #333;
 }
 
 .form-group {
-  display: flex;;
-  flex-direction: column;
   margin-bottom: 15px;
 }
 
 .form-group label {
   font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
 }
 
-.form-group label span {
+.form-group span {
   color: red;
 }
 
 .form-group input {
-  padding: 8px;
+  width: 100%;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
@@ -102,3 +101,29 @@ button:hover {
   background: #28a745;
 }
 
+.image-container {
+  width: 50%;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* responsive design */
+@media (max-width: 900px) {
+  .container {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .reservation-container, .image-container {
+      width: 100%;
+  }
+
+  .image-container img {
+      max-width: 150%;
+      margin: auto;
+  }
+}
