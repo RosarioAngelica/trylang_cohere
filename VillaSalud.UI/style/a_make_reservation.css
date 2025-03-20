@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Playfair Display", serif;
+    background: #f5f5dc; /* Beige background */
+  }
+  
+  .header-image {
+    width: 100%;
+    height: 90px;
+    background: url("../assets/background_picture.jpeg") no-repeat center center/cover;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: center;
+    background: white;
+    padding: 10px 0;
+    border-bottom: 2px solid black;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+  }
+  
+  .navbar li {
+    display: inline;
+  }
+  
+  .navbar a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 10px;
+  }
+  
+  .navbar a.active {
+    text-decoration: underline;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .reservation-container {
+    width: 50%;
+  }
+  
+  .reservation-container h2 {
+    text-align: left;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group span {
+    color: red;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background: #007b3d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  button:hover {
+    background: #28a745;
+  }
+  
+  .image-container {
+    width: 50%;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  /* responsive design */
+  @media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+  
+    .reservation-container, .image-container {
+        width: 100%;
+    }
+  
+    .image-container img {
+        max-width: 150%;
+        margin: auto;
+    }
+  }
+  

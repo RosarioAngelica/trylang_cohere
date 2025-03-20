@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Reports - Villa Salud</title>
+    <link rel="stylesheet" href="../style/a_view_report.css">
+</head>
+<body>
+    <header>
+        <h1>Villa Salud Admin - Reports</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="inquiries.html">View Inquiries</a></li>
+            <li><a href="reservations.html">Make Reservation</a></li>
+            <li><a href="a_view_report.html" class="active">View Report</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="report-summary">
+            <div class="report-card">
+                <h3>Total Inquiries</h3>
+                <p id="total-inquiries">0</p>
+            </div>
+            <div class="report-card">
+                <h3>Total Reservations</h3>
+                <p id="total-reservations">0</p>
+            </div>
+            <div class="report-card">
+                <h3>Most Popular Theme</h3>
+                <p id="popular-theme">-</p>
+            </div>
+        </section>
+
+        <section class="chart-container">
+            <h2>Statistics Overview</h2>
+            <canvas id="inquiryChart"></canvas>
+            <canvas id="bookingChart"></canvas>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../script/a_view_report.js"></script>
+</body>
+</html>

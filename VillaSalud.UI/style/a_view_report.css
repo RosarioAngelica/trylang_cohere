@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #005f47;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background: #004030;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+nav ul li a.active {
+    font-weight: bold;
+    border-bottom: 3px solid yellow;
+}
+
+main {
+    padding: 20px;
+}
+
+.report-summary {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.report-card {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 30%;
+}
+
+.chart-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+canvas {
+    max-width: 600px;
+    margin: auto;
+}
