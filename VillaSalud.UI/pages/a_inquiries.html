@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Reports - Villa Salud</title>
-    <link rel="stylesheet" href="../style/a_view_report.css">
+    <title>View Inquiries - Villa Salud</title>
+    <link rel="stylesheet" href="../style/a_inquiries.css">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
                     <span class="text">Dashboard</span>
                 </a>
             </li>
-            <li>
+            <li class="active">
                 <a href="../pages/a_inquiries.html">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">View Inquiries</span>
@@ -33,7 +33,7 @@
                     <span class="text">Reservations</span>
                 </a>
             </li>
-            <li class="active">
+            <li>
                 <a href="../pages/a_view_report.html">
                     <i class='bx bxs-doughnut-chart'></i>
                     <span class="text">View Reports</span>
@@ -61,48 +61,23 @@
         <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
-            <h2>View Reports</h2>
+            <h2>View Inquiries</h2>
         </nav>
 
         <!-- MAIN -->
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Reports Overview</h1>
-                    <p>Track inquiries, bookings, and trends.</p>
+                    <h1>Customer Inquiries</h1>
+                    <p>View and manage customer inquiries.</p>
                 </div>
             </div>
-
-            <!-- Report Summary Cards -->
-            <ul class="box-info">
-                <li>
-                    <i class='bx bxs-calendar-check'></i>
-                    <span class="text">
-                        <h3 id="total-inquiries">0</h3>
-                        <p>Total Inquiries</p>
-                    </span>
-                </li>
-                <li>
-                    <i class='bx bxs-group'></i>
-                    <span class="text">
-                        <h3 id="total-bookings">0</h3>
-                        <p>Total Reservations</p>
-                    </span>
-                </li>
-                <li>
-                    <i class='bx bxs-star'></i>
-                    <span class="text">
-                        <h3 id="popular-theme">-</h3>
-                        <p>Most Popular Theme</p>
-                    </span>
-                </li>
-            </ul>
 
             <!-- Table Data -->
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3>Recent Inquiries & Bookings</h3>
+                        <h3>Recent Inquiries</h3>
                         <i class='bx bx-filter'></i>
                     </div>
                     <table>
@@ -110,11 +85,12 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Type</th>
+                                <th>Message</th>
                                 <th>Date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody id="reportTable">
+                        <tbody id="inquiriesTable">
                             <!-- Data will be inserted dynamically via JavaScript -->
                         </tbody>
                     </table>
@@ -123,6 +99,6 @@
         </main>
     </section>
 
-    <script src="../script/a_view_report.js"></script>
+    <script src="../script/a_inquiries.js"></script>
 </body>
 </html>
