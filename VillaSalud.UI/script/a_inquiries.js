@@ -1,24 +1,3 @@
-// Sidebar Active State
-const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
-
-allSideMenu.forEach(item => {
-    const li = item.parentElement;
-    item.addEventListener('click', function () {
-        allSideMenu.forEach(i => {
-            i.parentElement.classList.remove('active');
-        });
-        li.classList.add('active');
-    });
-});
-
-// Sidebar Toggle
-const menuBar = document.querySelector('#content nav .bx.bx-menu');
-const sidebar = document.getElementById('sidebar');
-
-menuBar.addEventListener('click', function () {
-    sidebar.classList.toggle('hide');
-});
-
 // Load Inquiry Data
 document.addEventListener("DOMContentLoaded", function () {
     const inquiriesTable = document.getElementById("inquiriesTable");
