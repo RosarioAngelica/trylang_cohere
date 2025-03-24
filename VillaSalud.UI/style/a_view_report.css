@@ -1,50 +1,57 @@
-/* General Styling */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: 'Playfair Display', serif;
 }
 
 body {
-    background: #eee;
-    font-family: 'Poppins', sans-serif;
+    background: beige;
 }
 
+/* NAVBAR */
 .navbar {
     display: flex;
     justify-content: center;
     background: white;
     padding: 10px 0;
     border-bottom: 2px solid black;
-  }
-  
-  .navbar ul {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar ul {
     list-style: none;
     padding: 0;
     display: flex;
     gap: 30px;
-  }
-  
-  .navbar li {
+}
+
+.navbar li {
     display: inline;
-  }
-  
-  .navbar a {
+}
+
+.navbar a {
     text-decoration: none;
     color: black;
     font-size: 18px;
     font-weight: bold;
     padding: 5px 10px;
-  }
-  
-  .navbar a.active {
+}
+
+.navbar a.active {
     text-decoration: underline;
-  }
-  
+}
 
 /* CONTENT */
 #content {
-    margin-top: 70px; /* Adjust for fixed navbar */
+    margin-top: 80px;
     padding: 30px;
 }
 
@@ -59,19 +66,25 @@ body {
 .box-info li {
     padding: 24px;
     background: white;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     gap: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .box-info li i {
     font-size: 36px;
+    color: #007b3d;
 }
 
 /* Table Data */
 .table-data {
     margin-top: 24px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .table-data table {
@@ -79,15 +92,16 @@ body {
     border-collapse: collapse;
 }
 
-.table-data th {
-    padding-bottom: 12px;
-    font-size: 13px;
+.table-data th,
+.table-data td {
+    padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
-.table-data td {
-    padding: 16px 0;
+.table-data th {
+    background: #007b3d;
+    color: white;
 }
 
 .table-data tbody tr:hover {
