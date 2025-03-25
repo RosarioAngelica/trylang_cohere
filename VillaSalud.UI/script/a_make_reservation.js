@@ -1,0 +1,157 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const venueSelect = document.getElementById("venue");
+    const otherVenueInput = document.getElementById("otherVenue");
+
+    const themeMotifSelect = document.getElementById("theme_motif");
+    const otherThemeMotifInput = document.getElementById("otherThemeMotif");
+
+    const eventTypeSelect = document.getElementById("event_type");
+    const otherEventTypeInput = document.getElementById("otherEventType");
+
+    const form = document.querySelector("form");
+
+    function toggleOtherVenue() {
+        otherVenueInput.style.display = venueSelect.value === "other" ? "block" : "none";
+        if (venueSelect.value !== "other") otherVenueInput.value = "";
+    }
+
+    function toggleOtherThemeMotif() {
+        otherThemeMotifInput.style.display = themeMotifSelect.value === "other" ? "block" : "none";
+        if (themeMotifSelect.value !== "other") otherThemeMotifInput.value = "";
+    }
+
+    function toggleOtherEventType() {
+        otherEventTypeInput.style.display = eventTypeSelect.value === "other" ? "block" : "none";
+        if (eventTypeSelect.value !== "other") otherEventTypeInput.value = "";
+    }
+
+    venueSelect.addEventListener("change", toggleOtherVenue);
+    themeMotifSelect.addEventListener("change", toggleOtherThemeMotif);
+    eventTypeSelect.addEventListener("change", toggleOtherEventType);
+
+    form.addEventListener("submit", function (event) {
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const contact = document.getElementById("contact").value.trim();
+        const venue = venueSelect.value;
+        const themeMotif = themeMotifSelect.value;
+        const eventType = eventTypeSelect.value;
+
+        if (name === "" || email === "" || contact === "") {
+            alert("Please fill in all required fields.");
+            event.preventDefault();
+        } else if (venue === "other" && otherVenueInput.value.trim() === "") {
+            alert("Please specify the venue.");
+            event.preventDefault();
+        } else if (themeMotif === "other" && otherThemeMotifInput.value.trim() === "") {
+            alert("Please specify the theme/motif.");
+            event.preventDefault();
+        } else if (eventType === "other" && otherEventTypeInput.value.trim() === "") {
+            alert("Please specify the event type.");
+            event.preventDefault();
+        }
+    });
+
+    // ---------------------------- //
+    //       CALENDAR FUNCTION       //
+    // ---------------------------- //
+    const calendar = document.getElementById("calendar");
+    const monthYear = document.getElementById("month-year");
+    const prevMonthBtn = document.getElementById("prevMonth");
+    const nextMonthBtn = document.getElementById("nextMonth");
+    const modal = document.getElementById("statusModal");
+    const saveStatusBtn = document.getElementById("saveStatus");
+    const closeModalBtn = document.getElementById("closeModal");
+    const statusSelect = document.getElementById("statusSelect");
+
+    let currentDate = new Date();
+    let selectedDate = null;
+    let dateStatuses = {};  // Stores the date statuses in memory
+
+    function renderCalendar() {
+        const month = currentDate.getMonth();
+        const year = currentDate.getFullYear();
+        monthYear.textContent = new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(currentDate);
+
+        const firstDay = new Date(year, month, 1).getDay(); 
+        const lastDate = new Date(year, month + 1, 0).getDate(); 
+
+        calendar.innerHTML = "";
+        
+        // Fill empty days before the first day of the month
+        for (let i = 0; i < firstDay; i++) {
+            const emptyCell = document.createElement("div");
+            emptyCell.classList.add("calendar-day", "empty");
+            calendar.appendChild(emptyCell);
+        }
+
+        // Fill actual days of the month
+        for (let day = 1; day <= lastDate; day++) {
+            const dayCell = document.createElement("div");
+            dayCell.classList.add("calendar-day");
+            dayCell.textContent = day;
+            const dateKey = `${year}-${month + 1}-${day}`;
+            dayCell.setAttribute("data-date", dateKey);
+
+            // Apply saved status
+            if (dateStatuses[dateKey]) {
+                dayCell.setAttribute("data-status", dateStatuses[dateKey]);
+                applyStatusStyle(dayCell, dateStatuses[dateKey]);
+            }
+
+            dayCell.addEventListener("click", function () {
+                selectedDate = dateKey;
+                modal.style.display = "block";
+            });
+
+            calendar.appendChild(dayCell);
+        }
+    }
+
+    function applyStatusStyle(cell, status) {
+        cell.classList.remove("free", "closed", "full");
+        if (status === "free") {
+            cell.style.background = "green";
+            cell.style.color = "white";
+        } else if (status === "closed") {
+            cell.style.background = "red";
+            cell.style.color = "white";
+        } else if (status === "full") {
+            cell.style.background = "yellow";
+            cell.style.color = "black";
+        }
+    }
+
+    saveStatusBtn.addEventListener("click", function () {
+        if (selectedDate) {
+            const selectedStatus = statusSelect.value;
+            dateStatuses[selectedDate] = selectedStatus; // Save status in memory
+
+            // Update UI
+            const dayCells = document.querySelectorAll(".calendar-day");
+            dayCells.forEach((cell) => {
+                if (cell.getAttribute("data-date") === selectedDate) {
+                    applyStatusStyle(cell, selectedStatus);
+                }
+            });
+
+            modal.style.display = "none";
+        }
+    });
+
+    closeModalBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    prevMonthBtn.addEventListener("click", function () {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
+    });
+
+    nextMonthBtn.addEventListener("click", function () {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+    });
+
+    renderCalendar();
+});
