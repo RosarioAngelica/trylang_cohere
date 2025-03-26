@@ -10,19 +10,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.querySelector("form");
 
+    const validEventTypes = [
+        "Baptismal Package", "Birthday Package", "Debut Package",
+        "Kiddie Package", "Wedding Package", "Standard Package", "Others"
+    ];
+
+    const validThemeMotifs = [
+        "Floral", "Rustic", "Elegant", "Beach", "Modern", "Others"
+    ];
+
     function toggleOtherVenue() {
         otherVenueInput.style.display = venueSelect.value === "other" ? "block" : "none";
         if (venueSelect.value !== "other") otherVenueInput.value = "";
     }
 
     function toggleOtherThemeMotif() {
-        otherThemeMotifInput.style.display = themeMotifSelect.value === "other" ? "block" : "none";
-        if (themeMotifSelect.value !== "other") otherThemeMotifInput.value = "";
+        otherThemeMotifInput.style.display = themeMotifSelect.value === "Others" ? "block" : "none";
+        if (themeMotifSelect.value !== "Others") otherThemeMotifInput.value = "";
     }
 
     function toggleOtherEventType() {
-        otherEventTypeInput.style.display = eventTypeSelect.value === "other" ? "block" : "none";
-        if (eventTypeSelect.value !== "other") otherEventTypeInput.value = "";
+        otherEventTypeInput.style.display = eventTypeSelect.value === "Others" ? "block" : "none";
+        if (eventTypeSelect.value !== "Others") otherEventTypeInput.value = "";
     }
 
     venueSelect.addEventListener("change", toggleOtherVenue);
@@ -33,20 +42,27 @@ document.addEventListener("DOMContentLoaded", function () {
         const message = document.getElementById("message").value.trim();
         const date = document.getElementById("date").value.trim();
         const time = document.getElementById("time").value.trim();
-        const venue = venueSelect.value;
-        const themeMotif = themeMotifSelect.value;
-        const eventType = eventTypeSelect.value;
+        let eventType = eventTypeSelect.value;
+        let themeMotif = themeMotifSelect.value;
+
+        if (!validEventTypes.includes(eventType)) {
+            eventType = "Others";
+        }
+
+        if (!validThemeMotifs.includes(themeMotif)) {
+            themeMotif = "Others";
+        }
 
         if (message === "" || date === "" || time === "" || eventType === "" || themeMotif === "") {
             alert("Please fill in all required fields.");
             event.preventDefault();
-        } else if (venue === "other" && otherVenueInput.value.trim() === "") {
+        } else if (venueSelect.value === "other" && otherVenueInput.value.trim() === "") {
             alert("Please specify the venue.");
             event.preventDefault();
-        } else if (themeMotif === "other" && otherThemeMotifInput.value.trim() === "") {
+        } else if (themeMotif === "Others" && otherThemeMotifInput.value.trim() === "") {
             alert("Please specify the theme/motif.");
             event.preventDefault();
-        } else if (eventType === "other" && otherEventTypeInput.value.trim() === "") {
+        } else if (eventType === "Others" && otherEventTypeInput.value.trim() === "") {
             alert("Please specify the event type.");
             event.preventDefault();
         }
