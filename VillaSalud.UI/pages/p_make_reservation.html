@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Make Reservation</title>
-    <link rel="stylesheet" href="../style/a_make_reservation.css">
+    <link rel="stylesheet" href="../style/p_make_reservation.css">
 </head>
 <body>
     <header class="header-image"></header>
 
     <nav class="navbar">
         <ul>
-            <li><a href="../pages/a_homepage.html">Home</a></li>
-            <li><a href="../pages/a_inquiries.html">View Inquiries</a></li>
-            <li><a href="../pages/a_make_reservation.html" class="active">Make Reservation</a></li>
-            <li><a href="../pages/a_view_report.html">View Report</a></li>
+            <li><a href="p_homepage.html">Home</a></li>
+            <li><a href="#" class="active">Make Reservation</a></li>
+            <li><a href="p_view_reservation.html">View Reservation</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
         </ul>
     </nav>
 
@@ -70,7 +71,7 @@
                         <option value="birthday">Birthday Party Package</option>
                         <option value="kiddie">Kiddie Party Package</option>
                         <option value="wedding">Wedding Package</option>
-                        <option value="standard">Standard Package</option>
+                        <option value="Standard">Standard Package</option>
                         <option value="other">Other</option>
                     </select>
                     <input type="text" id="otherEventType" name="other_event_type" placeholder="Specify Event Type"
@@ -96,32 +97,15 @@
                 <div class="form-group">
                     <button type="submit">Confirm Details</button>
                 </div>
+
             </form>
         </div>
 
-        <div class="calendar-container">
-    <div class="calendar-header">
-        <button id="prevMonth">◀</button>
-        <span id="month-year"></span>
-        <button id="nextMonth">▶</button>
+        <div class="image-container">
+            <img src="../assets/forms.png" alt="Reservation Illustration">
+        </div>
     </div>
-    <div id="calendar"></div>
-</div>
 
-<!-- Admin Status Selection Modal -->
-<div id="statusModal" class="modal">
-    <div class="modal-content">
-        <h3>Select Status</h3>
-        <select id="statusSelect">
-            <option value="free">Free (Green)</option>
-            <option value="full">Fully Booked (Yellow)</option>
-            <option value="closed">Closed (Red)</option>
-        </select>
-        <button id="saveStatus">Save</button>
-        <button id="closeModal">Cancel</button>
-    </div>
-</div>
-
-    <script src="../script/a_make_reservation.js"></script>
+    <script src="../script/p_make_reservation.js"></script>
 </body>
 </html>

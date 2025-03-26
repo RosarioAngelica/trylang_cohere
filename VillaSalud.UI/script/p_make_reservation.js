@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
             themeMotif = "Others";
         }
 
-        if (message === "" || date === "" || time === "" || eventType === "" || themeMotif === "") {
+        if (name === "" || email === "" || contact === "") {
             alert("Please fill in all required fields.");
             event.preventDefault();
         } else if (venueSelect.value === "other" && otherVenueInput.value.trim() === "") {

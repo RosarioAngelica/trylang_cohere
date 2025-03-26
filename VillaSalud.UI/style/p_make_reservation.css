@@ -78,8 +78,7 @@ body {
   color: red;
 }
 
-.form-group input,
-.form-group select {
+.form-group input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -87,13 +86,6 @@ body {
   font-size: 16px;
 }
 
-/* Hide the "Other" inputs by default */
-.other-input {
-  display: none;
-  margin-top: 10px;
-}
-
-/* Button styles */
 button {
   width: 100%;
   padding: 10px;
@@ -103,14 +95,12 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
-  transition: background 0.3s ease-in-out;
 }
 
 button:hover {
   background: #28a745;
 }
 
-/* Image container */
 .image-container {
   width: 50%;
 }
@@ -121,20 +111,19 @@ button:hover {
   border-radius: 10px;
 }
 
-/* Responsive design */
+/* responsive design */
 @media (max-width: 900px) {
   .container {
-    flex-direction: column;
-    text-align: center;
+      flex-direction: column;
+      text-align: center;
   }
 
-  .reservation-container,
-  .image-container {
-    width: 100%;
+  .reservation-container, .image-container {
+      width: 100%;
   }
 
   .image-container img {
-    max-width: 150%;
-    margin: auto;
+      max-width: 150%;
+      margin: auto;
   }
 }
