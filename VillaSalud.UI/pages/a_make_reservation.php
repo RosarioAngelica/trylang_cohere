@@ -20,7 +20,7 @@ $booked_dates = [
         <ul>
             <li><a href="../pages/a_homepage.html">Home</a></li>
             <li><a href="../pages/a_inquiries.html">View Reservation</a></li>
-            <li><a href="#" class="active">Make Reservation</a></li>
+            <li><a href="../pages/a_make_reservation.php" class="active">Make Reservation</a></li>
             <li><a href="../pages/a_view_report.html">View Report</a></li>
         </ul>
     </nav>
