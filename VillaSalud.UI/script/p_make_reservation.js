@@ -30,14 +30,14 @@ document.addEventListener("DOMContentLoaded", function () {
     eventTypeSelect.addEventListener("change", toggleOtherEventType);
 
     form.addEventListener("submit", function (event) {
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const contact = document.getElementById("contact").value.trim();
+        const message = document.getElementById("message").value.trim();
+        const date = document.getElementById("date").value.trim();
+        const time = document.getElementById("time").value.trim();
         const venue = venueSelect.value;
         const themeMotif = themeMotifSelect.value;
         const eventType = eventTypeSelect.value;
 
-        if (name === "" || email === "" || contact === "") {
+        if (message === "" || date === "" || time === "" || eventType === "" || themeMotif === "") {
             alert("Please fill in all required fields.");
             event.preventDefault();
         } else if (venue === "other" && otherVenueInput.value.trim() === "") {
