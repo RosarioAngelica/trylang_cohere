@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </nav>
     <div class="container"> 
         <div class="reservation-container">
-            <h2>Submit Your Inquiry</h2>
+        <h2>Let's bring your vision to life—just fill out the form.</h2>
             <form method="POST" action="p_make_reservation.php">
                 <div class="form-group">
                     <label for="name">Name:<span>*</span></label>
