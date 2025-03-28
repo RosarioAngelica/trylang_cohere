@@ -78,7 +78,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <header class="header-image"></header>
     <nav class="navbar">
         <ul>
-            <li><a href="p_homepage.php">Home</a></li>
+            <li><a href="../pages/p_homepage.html">Home</a></li>
+            <li><a href="#" class="active">Make Reservation</a></li>
+            <li><a href="../pages/p_view_reservation.html">View Reservation</a></li>
+            <li><a href="../pages/faqs.html">FAQs</a></li>
+            <li><a href="../pages/feedback.html">Feedback</a></li>
         </ul>
     </nav>
     <div class="container"> 
@@ -111,13 +115,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-group">
                     <label for="venue">Venue:<span>*</span></label>
-                    <select id="venue" name="venue">
-                        <option value="" selected disabled>Select a venue</option>
-                        <option value="Venue A">Venue A</option>
-                        <option value="Venue B">Venue B</option>
-                        <option value="Venue C">Venue C</option>
-                        <option value="other">Other</option>
-                    </select>
+                        <select id="venue" name="venue" onchange="toggleOtherVenue()">
+                            <option value="" selected disabled>Select a venue</option>
+                            <option value="option1">Villa I</option>
+                            <option value="option2">Villa II</option>
+                            <option value="option3">Elizabeth Hall</option>
+                            <option value="option4">Private Pool</option>
+                            <option value="other">Other</option>
+                        </select>
                     <input type="text" id="otherVenue" name="otherVenue" placeholder="Enter venue" style="display: none;">
                 </div>
                 <div class="form-group">
