@@ -1,69 +1,104 @@
 <?php
 
-include_once "db_connect.php"; // Ensure this file correctly initializes $conn
-
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = trim($_POST["name"]);
-    $email = trim($_POST["email"]);
-    $contact = trim($_POST["contact"]);
-    $message = trim($_POST["message"]);
-    $date = trim($_POST["date"]);
-    $time = trim($_POST["time"]);
-    $venue = trim($_POST["venue"]);
-    $event_type = trim($_POST["event_type"]);
-    $theme_motif = trim($_POST["theme_motif"]);
+    include 'db_connect.php';
 
-    // Define valid ENUM values
-    $valid_event_types = ["Baptismal Package", "Birthday Package", "Debut Package", "Kiddie Package", "Wedding Package", "Standard Package", "Others"];
-    $valid_theme_motifs = ["Floral", "Rustic", "Elegant", "Beach", "Modern", "Others"];
+    $eventType = $_POST['event_type'];
+    $otherEventType = !empty($_POST['other_event_type']) ? $_POST['other_event_type'] : null;
 
-    // Validate event_type
-    if (!in_array($event_type, $valid_event_types)) {
-        $event_type = "Others"; // Default to Others if invalid
-    }
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $contact = $_POST['contact_number']; 
+    $venue = $_POST['venue'];
+    $otherVenue = !empty($_POST['other_venue']) ? $_POST['other_venue'] : null;
+    $themeMotif = $_POST['theme_motif'];
+    $otherThemeMotif = !empty($_POST['other_theme_motif']) ? $_POST['other_theme_motif'] : null;
+    $message = $_POST['message'];
+    $date = $_POST['date'];
+    $time = $_POST['time'];
 
-    // Validate theme_motif
-    if (!in_array($theme_motif, $valid_theme_motifs)) {
-        $theme_motif = "Others";
-    }
-
-    // Step 1: Insert patron details if not already registered
-    $checkPatron = "SELECT patron_id FROM patron WHERE email = ?";
-    $stmt = $conn->prepare($checkPatron);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        // Patron already exists, get their patron_id
-        $stmt->bind_result($patron_id);
-        $stmt->fetch();
+    // Validate venue against allowed ENUM values
+    $allowedVenues = ['Villa I', 'Villa II', 'Elizabeth Hall', 'Private Pool'];
+    
+    if ($venue === 'Others') {
+        // If 'Others' is selected, check if other_venue is provided
+        if (empty($otherVenue)) {
+            die("Please specify the venue in the 'Other Venue' field.");
+        }
+        // If other_venue is provided, use the first allowed venue as a placeholder
+        $venue = $allowedVenues[0];
     } else {
-        // Insert new patron record
-        $insertPatron = "INSERT INTO patron (name, email, contact_number) VALUES (?, ?, ?)";
-        $stmt = $conn->prepare($insertPatron);
-        $stmt->bind_param("sss", $name, $email, $contact);
-        $stmt->execute();
-        $patron_id = $stmt->insert_id; // Get the newly inserted patron's ID
+        // Validate that the selected venue is in the allowed list
+        if (!in_array($venue, $allowedVenues)) {
+            die("Invalid venue selection.");
+        }
     }
-    $stmt->close();
 
-    // Step 2: Insert the inquiry with the retrieved or new patron_id
-    $insertInquiry = "INSERT INTO inquiry (patron_id, message, date, time, venue, event_type, theme_motif) 
-                      VALUES (?, ?, ?, ?, ?, ?, ?)";
+    // Similar handling for event type and theme motif
+    $allowedEventTypes = ['Baptismal Package', 'Birthday Package', 'Debut Package', 'Kiddie Package', 'Wedding Package', 'Standard Package'];
     
-    $stmt = $conn->prepare($insertInquiry);
-    $stmt->bind_param("issssss", $patron_id, $message, $date, $time, $venue, $event_type, $theme_motif);
-    
-    if ($stmt->execute()) {
-        echo "<script>alert('Inquiry submitted successfully!');</script>";
+    if ($eventType === 'Others') {
+        if (empty($otherEventType)) {
+            die("Please specify the event type in the 'Other Event Type' field.");
+        }
+        $eventType = $allowedEventTypes[0];
     } else {
-        echo "<script>alert('Error submitting inquiry: " . $stmt->error . "');</script>";
+        if (!in_array($eventType, $allowedEventTypes)) {
+            die("Invalid event type selection.");
+        }
     }
+
+    $allowedThemeMotifs = ['Floral', 'Rustic', 'Elegant', 'Beach', 'Modern'];
     
-    $stmt->close();
+    if ($themeMotif === 'Others') {
+        if (empty($otherThemeMotif)) {
+            die("Please specify the theme/motif in the 'Other Theme/Motif' field.");
+        }
+        $themeMotif = $allowedThemeMotifs[0];
+    } else {
+        if (!in_array($themeMotif, $allowedThemeMotifs)) {
+            die("Invalid theme/motif selection.");
+        }
+    }
+
+    $patronQuery = "INSERT INTO patron (name, email, contact_number) VALUES (?, ?, ?)";
+    $patronStmt = $conn->prepare($patronQuery);
+    $patronStmt->bind_param("sss", $name, $email, $contact);
+
+    if ($patronStmt->execute()) {
+        $lastPatronId = $conn->insert_id;
+
+        $query = "INSERT INTO inquiry (patron_id, venue, other_venue, event_type, other_event_type, theme_motif, other_theme_motif, message, date, time) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("isssssssss", 
+            $lastPatronId, 
+            $venue, 
+            $otherVenue, 
+            $eventType, 
+            $otherEventType, 
+            $themeMotif, 
+            $otherThemeMotif, 
+            $message, 
+            $date, 
+            $time
+        );
+
+        if ($stmt->execute()) {
+            echo "Reservation successfully made!";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+    } else {
+        echo "Error: " . $patronStmt->error;
+    }
+
+    $patronStmt->close();
+    $conn->close();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-group">
                     <label for="contact">Contact Number:<span>*</span></label>
-                    <input type="tel" id="contact" name="contact" required>
+                    <input type="tel" id="contact" name="contact_number" required>
                 </div>
                 <div class="form-group">
                     <label for="message">Message:<span>*</span></label>
@@ -115,19 +150,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-group">
                     <label for="venue">Venue:<span>*</span></label>
-                        <select id="venue" name="venue" onchange="toggleOtherVenue()">
-                            <option value="" selected disabled>Select a venue</option>
-                            <option value="option1">Villa I</option>
-                            <option value="option2">Villa II</option>
-                            <option value="option3">Elizabeth Hall</option>
-                            <option value="option4">Private Pool</option>
-                            <option value="other">Other</option>
-                        </select>
-                    <input type="text" id="otherVenue" name="otherVenue" placeholder="Enter venue" style="display: none;">
+                    <select id="venue" name="venue">
+                        <option value="Villa I">Villa I</option>
+                        <option value="Villa II">Villa II</option>
+                        <option value="Elizabeth Hall">Elizabeth Hall</option>
+                        <option value="Private Pool">Private Pool</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    <input type="text" id="otherVenue" name="other_venue" style="display: none;" placeholder="Please specify">
                 </div>
                 <div class="form-group">
                     <label for="event_type">Event Type:<span>*</span></label>
-                    <select id="event_type" name="event_type" required>
+                    <select id="event_type" name="event_type">
                         <option value="Baptismal Package">Baptismal Package</option>
                         <option value="Birthday Package">Birthday Package</option>
                         <option value="Debut Package">Debut Package</option>
@@ -136,10 +170,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="Standard Package">Standard Package</option>
                         <option value="Others">Others</option>
                     </select>
+                    <input type="text" id="otherEventType" name="other_event_type" style="display: none;" placeholder="Please specify">
                 </div>
                 <div class="form-group">
                     <label for="theme_motif">Theme/Motif:<span>*</span></label>
-                    <select id="theme_motif" name="theme_motif" required>
+                    <select id="theme_motif" name="theme_motif">
                         <option value="Floral">Floral</option>
                         <option value="Rustic">Rustic</option>
                         <option value="Elegant">Elegant</option>
@@ -147,6 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="Modern">Modern</option>
                         <option value="Others">Others</option>
                     </select>
+                    <input type="text" id="otherThemeMotif" name="other_theme_motif" style="display: none;" placeholder="Please specify">
                 </div>
                 <div class="form-group">
                     <button type="submit">Submit Inquiry</button>
