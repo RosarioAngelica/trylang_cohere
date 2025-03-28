@@ -34,63 +34,61 @@
 
                 <div class="form-group">
                     <label for="contact">Contact Number:<span>*</span></label>
-                    <input type="tel" id="contact" name="contact" required />
+                    <input type="tel" id="contact" name="contact_number" required />
                 </div>
 
                 <div class="form-group">
-                    <label for="time">Time:</label>
-                    <input type="time" id="time" name="time" />
+                    <label for="message">Message:<span>*</span></label>
+                    <textarea id="message" name="message" required></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="date">Date:</label>
-                    <input type="date" id="date" name="date" />
+                    <label for="date">Date:<span>*</span></label>
+                    <input type="date" id="date" name="date" required/>
                 </div>
 
                 <div class="form-group">
-                    <label for="venue">Venue:</label>
-                    <select id="venue" name="venue" onchange="toggleOtherVenue()">
-                        <option value="" selected disabled>Select a venue</option>
-                        <option value="option1">Villa I</option>
-                        <option value="option2">Villa II</option>
-                        <option value="option3">Option 3</option>
-                        <option value="other">Other</option>
+                    <label for="time">Time:<span>*</span></label>
+                    <input type="time" id="time" name="time" required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="venue">Venue:<span>*</span></label>
+                    <select id="venue" name="venue">
+                        <option value="Villa I">Villa I</option>
+                        <option value="Villa II">Villa II</option>
+                        <option value="Elizabeth Hall">Elizabeth Hall</option>
+                        <option value="Private Pool">Private Pool</option>
+                        <option value="Others">Others</option>
                     </select>
-                
-                    <input type="text" id="otherVenue" name="otherVenue" placeholder="Enter venue" 
-                        style="display: none;">
+                    <input type="text" id="otherVenue" name="other_venue" style="display: none;" placeholder="Please specify">
                 </div>
 
                 <div class="form-group">
-                    <label for="event_type">Event Type:</label>
+                    <label for="event_type">Event Type:<span>*</span></label>
                     <select id="event_type" name="event_type">
-                        <option value="">Select an Event Type</option>
-                        <option value="baptismal">Baptismal Package</option>
-                        <option value="debut">Debut Package</option>
-                        <option value="birthday">Birthday Party Package</option>
-                        <option value="kiddie">Kiddie Party Package</option>
-                        <option value="wedding">Wedding Package</option>
-                        <option value="standard">Standard Package</option>
-                        <option value="other">Other</option>
+                        <option value="Baptismal Package">Baptismal Package</option>
+                        <option value="Birthday Package">Birthday Package</option>
+                        <option value="Debut Package">Debut Package</option>
+                        <option value="Kiddie Package">Kiddie Package</option>
+                        <option value="Wedding Package">Wedding Package</option>
+                        <option value="Standard Package">Standard Package</option>
+                        <option value="Others">Others</option>
                     </select>
-                    <input type="text" id="otherEventType" name="other_event_type" placeholder="Specify Event Type"
-                         style="display: none;">
+                    <input type="text" id="otherEventType" name="other_event_type" style="display: none;" placeholder="Please specify">
                 </div>
                 
                 <div class="form-group">
-                    <label for="theme_motif">Event Theme & Motif:</label>
-                    <select id="theme_motif" name="theme_motif" onchange="toggleOtherThemeMotif()">
-                        <option value="" selected disabled>Select a theme/motif</option>
-                        <option value="floral">Floral</option>
-                        <option value="rustic">Rustic</option>
-                        <option value="elegant">Elegant</option>
-                        <option value="beach">Beach</option>
-                        <option value="modern">Modern</option>
-                        <option value="other">Other</option>
+                    <label for="theme_motif">Theme/Motif:<span>*</span></label>
+                    <select id="theme_motif" name="theme_motif">
+                        <option value="Floral">Floral</option>
+                        <option value="Rustic">Rustic</option>
+                        <option value="Elegant">Elegant</option>
+                        <option value="Beach">Beach</option>
+                        <option value="Modern">Modern</option>
+                        <option value="Others">Others</option>
                     </select>
-                
-                    <input type="text" id="otherThemeMotif" name="otherThemeMotif" placeholder="Enter theme/motif"
-                        style="display: none;">
+                    <input type="text" id="otherThemeMotif" name="other_theme_motif" style="display: none;" placeholder="Please specify">
                 </div>
 
                 <div class="form-group">
@@ -100,28 +98,28 @@
         </div>
 
         <div class="calendar-container">
-    <div class="calendar-header">
-        <button id="prevMonth">◀</button>
-        <span id="month-year"></span>
-        <button id="nextMonth">▶</button>
-    </div>
-    <div id="calendar"></div>
-</div>
+            <div class="calendar-header">
+                <button id="prevMonth">◀</button>
+                <span id="month-year"></span>
+                <button id="nextMonth">▶</button>
+            </div>
+            <div id="calendar"></div>
+        </div>
 
-<!-- Admin Status Selection Modal -->
-<div id="statusModal" class="modal">
-    <div class="modal-content">
-        <h3>Select Status</h3>
-        <select id="statusSelect">
-            <option value="free">Free (Green)</option>
-            <option value="full">Fully Booked (Yellow)</option>
-            <option value="closed">Closed (Red)</option>
-        </select>
-        <button id="saveStatus">Save</button>
-        <button id="closeModal">Cancel</button>
+        <!-- Admin Status Selection Modal -->
+        <div id="statusModal" class="modal">
+            <div class="modal-content">
+                <h3>Select Status</h3>
+                <select id="statusSelect">
+                    <option value="free">Free (Green)</option>
+                    <option value="full">Fully Booked (Yellow)</option>
+                    <option value="closed">Closed (Red)</option>
+                </select>
+                <button id="saveStatus">Save</button>
+                <button id="closeModal">Cancel</button>
+            </div>
+        </div>
     </div>
-</div>
-
     <script src="../script/a_make_reservation.js"></script>
 </body>
 </html>

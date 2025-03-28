@@ -10,45 +10,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.querySelector("form");
 
-    function toggleOtherVenue() {
-        otherVenueInput.style.display = venueSelect.value === "other" ? "block" : "none";
-        if (venueSelect.value !== "other") otherVenueInput.value = "";
+    // Function to toggle visibility of "Other" input fields
+    function toggleOtherInput(selectElement, otherInput, otherValue) {
+        if (selectElement && otherInput) {
+            otherInput.style.display = selectElement.value === otherValue ? "block" : "none";
+            otherInput.required = selectElement.value === otherValue;
+            if (selectElement.value !== otherValue) {
+                otherInput.value = "";
+            }
+        }
     }
 
-    function toggleOtherThemeMotif() {
-        otherThemeMotifInput.style.display = themeMotifSelect.value === "other" ? "block" : "none";
-        if (themeMotifSelect.value !== "other") otherThemeMotifInput.value = "";
-    }
+    // Attach event listeners
+    if (venueSelect) venueSelect.addEventListener("change", () => toggleOtherInput(venueSelect, otherVenueInput, "Others"));
+    if (themeMotifSelect) themeMotifSelect.addEventListener("change", () => toggleOtherInput(themeMotifSelect, otherThemeMotifInput, "Others"));
+    if (eventTypeSelect) eventTypeSelect.addEventListener("change", () => toggleOtherInput(eventTypeSelect, otherEventTypeInput, "Others"));
 
-    function toggleOtherEventType() {
-        otherEventTypeInput.style.display = eventTypeSelect.value === "other" ? "block" : "none";
-        if (eventTypeSelect.value !== "other") otherEventTypeInput.value = "";
-    }
+    // Ensure correct fields are visible when page loads
+    toggleOtherInput(venueSelect, otherVenueInput, "Others");
+    toggleOtherInput(themeMotifSelect, otherThemeMotifInput, "Others");
+    toggleOtherInput(eventTypeSelect, otherEventTypeInput, "Others");
 
-    venueSelect.addEventListener("change", toggleOtherVenue);
-    themeMotifSelect.addEventListener("change", toggleOtherThemeMotif);
-    eventTypeSelect.addEventListener("change", toggleOtherEventType);
-
+    // Form validation before submission
     form.addEventListener("submit", function (event) {
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const contact = document.getElementById("contact").value.trim();
-        const venue = venueSelect.value;
-        const themeMotif = themeMotifSelect.value;
-        const eventType = eventTypeSelect.value;
-
-        if (name === "" || email === "" || contact === "") {
+        const name = document.getElementById("name")?.value.trim();
+        const email = document.getElementById("email")?.value.trim();
+        const contact = document.getElementById("contact")?.value.trim();
+        const message = document.getElementById("message")?.value.trim();
+        const date = document.getElementById("date")?.value.trim();
+        const time = document.getElementById("time")?.value.trim();
+        
+        if (!name || !email || !contact || !message || !date || !time) {
             alert("Please fill in all required fields.");
             event.preventDefault();
-        } else if (venue === "other" && otherVenueInput.value.trim() === "") {
+            return;
+        }
+
+        if (venueSelect.value === "Others" && !otherVenueInput.value.trim()) {
             alert("Please specify the venue.");
             event.preventDefault();
-        } else if (themeMotif === "other" && otherThemeMotifInput.value.trim() === "") {
-            alert("Please specify the theme/motif.");
-            event.preventDefault();
-        } else if (eventType === "other" && otherEventTypeInput.value.trim() === "") {
+            return;
+        }
+
+        if (eventTypeSelect.value === "Others" && !otherEventTypeInput.value.trim()) {
             alert("Please specify the event type.");
             event.preventDefault();
+            return;
+        }
+
+        if (themeMotifSelect.value === "Others" && !otherThemeMotifInput.value.trim()) {
+            alert("Please specify the theme/motif.");
+            event.preventDefault();
+            return;
         }
     });
 
