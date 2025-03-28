@@ -1,57 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Villa Salud Catering</title>
-    <link rel="stylesheet" href="../style/p_homepage.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="../style/p_homepage.css"> 
+</head>
+<body>
+
     <header class="header-image"></header>
 
     <nav class="navbar">
-      <ul>
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="p_make_reservation.html">Make Reservation</a></li>
-        <li><a href="p_view_reservation.html">View Reservation</a></li>
-        <li><a href="faqs.html">FAQs</a></li>
-        <li><a href="feedback.html">Feedback</a></li>
-      </ul>
+        <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="p_make_reservation.html">Make Reservation</a></li>
+            <li><a href="p_view_reservation.html">View Reservation</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+        </ul>
     </nav>
 
     <section class="banner-container">
-      <div class="banner">
-        <p>
-          ✨ Big events, bigger savings! Grab our special deals for weddings,
-          birthdays, and more! ✨
-        </p>
-      </div>
+        <div class="banner">
+            <p>✨ Big events, bigger savings! Grab our special deals for weddings, birthdays, and more! ✨</p>
+        </div>
     </section>
 
     <section class="packages">
-      <div class="package-card">
-        <img src="../assets/baptism_package.jpg" alt="Baptismal Package" />
-        <h3>Imperial Package</h3>
-        <a href="#" class="btn">View Package</a>
-      </div>
-      <div class="package-card">
-        <img src="../assets/debut_package.jpg" alt="Debut Package" />
-        <h3>Debut Package</h3>
-        <a href="#" class="btn">View Package</a>
-      </div>
-      <div class="package-card">
-        <img
-          src="../assets/birthday_package.jpg"
-          alt="Birthday Party Package"
-        />
-        <h3>Gala Party Package</h3>
-        <a href="#" class="btn">View Package</a>
-      </div>
-      <div class="package-card">
-        <img src="../assets/kiddie_package.jpg" alt="Kiddie Package" />
-        <h3>Wedding Package</h3>
-        <a href="#" class="btn">View Package</a>
-      </div>
+        <div class="package-card" data-package="Baptism Package">
+            <img src="../assets/baptism_package.jpg" alt="Baptismal Package">
+            <h3>Baptism Package</h3>
+            <button class="btn view-package">View Package</button>
+        </div>
+        <div class="package-card" data-package="Debut Package">
+            <img src="../assets/debut_package.jpg" alt="Debut Package">
+            <h3>Debut Package</h3>
+            <button class="btn view-package">View Package</button>
+        </div>
+        <div class="package-card" data-package="Wedding Package">
+            <img src="../assets/" alt="Wedding Package">
+            <h3>Wedding Package</h3>
+            <button class="btn view-package">View Package</button>
+        </div>
+        <div class="package-card" data-package="Kiddie Package">
+            <img src="../assets/debut_package.jpg" alt="Kiddie Package">
+            <h3>Kiddie Package</h3>
+            <button class="btn view-package">View Package</button>
+        </div>
     </section>
-  </body>
+
+ 
+    <div id="packageModal" class="modal">
+        <div class="modal-content">
+             <button class="close">&times;</button>
+            <h2 id="modalTitle"></h2>
+            <div class="modal-images">
+                <img id="modalImg1" src="../assets/baptismm.jpg" alt="Package Image 1">
+                <img id="modalImg2" src="" alt="Package Image 2">
+                <img id="modalImg3" src="" alt="Package Image 3">
+            </div>
+        </div>
+    </div>
+
+    <script src="../script/p_homepage.js"></script> 
+</body>
 </html>
