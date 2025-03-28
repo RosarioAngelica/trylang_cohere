@@ -43,7 +43,7 @@ body {
   text-decoration: underline;
 }
   
-  .container {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,40 +54,40 @@ body {
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
+}
   
-  .reservation-container {
+.reservation-container {
     width: 50%;
-  }
+}
   
-  .reservation-container h2 {
+.reservation-container h2 {
     text-align: left;
     color: #333;
-  }
+}
   
-  .form-group {
+.form-group {
     margin-bottom: 15px;
-  }
+}
   
-  .form-group label {
+.form-group label {
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
-  }
+}
   
-  .form-group span {
+.form-group span {
     color: red;
-  }
+}
   
-  .form-group input {
+.form-group input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-  }
+}
   
-  button {
+button {
     width: 100%;
     padding: 10px;
     background: #007b3d;
@@ -96,40 +96,40 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
-  }
+}
   
-  button:hover {
+button:hover {
     background: #28a745;
-  }
+}
   
-  .image-container {
+.image-container {
     width: 50%;
-  }
+}
   
-  .image-container img {
+.image-container img {
     width: 100%;
     height: auto;
     border-radius: 10px;
-  }
+}
   
   /* responsive design */
-  @media (max-width: 900px) {
-    .container {
+@media (max-width: 900px) {
+  .container {
         flex-direction: column;
         text-align: center;
-    }
+  }
   
-    .reservation-container, .image-container {
+  .reservation-container, .image-container {
         width: 100%;
-    }
+  }
   
-    .image-container img {
+  .image-container img {
         max-width: 150%;
         margin: auto;
     }
-  }
+}
   
-  .calendar-container {
+.calendar-container {
     width: 350px;
     margin-left: 20px;
     padding: 20px;
