@@ -2,14 +2,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Playfair Display", serif;
-  background: beige;
+  background: #f5f5dc; /* Beige background */
 }
 
 .header-image {
   width: 100%;
   height: 90px;
-  background: url("../assets/background_picture.jpeg") no-repeat center
-    center/cover;
+  background: url("../assets/background_picture.jpeg") no-repeat center center/cover;
 }
 
 .navbar {
@@ -42,234 +41,89 @@ body {
 .navbar a.active {
   text-decoration: underline;
 }
-  
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .reservation-container {
-    width: 50%;
-  }
-  
-  .reservation-container h2 {
-    text-align: left;
-    color: #333;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .form-group span {
-    color: red;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background: #007b3d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-  }
-  
-  button:hover {
-    background: #28a745;
-  }
-  
-  .image-container {
-    width: 50%;
-  }
-  
-  .image-container img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  /* responsive design */
-  @media (max-width: 900px) {
-    .container {
-        flex-direction: column;
-        text-align: center;
-    }
-  
-    .reservation-container, .image-container {
-        width: 100%;
-    }
-  
-    .image-container img {
-        max-width: 150%;
-        margin: auto;
-    }
-  }
-  
-  .calendar-container {
-    width: 350px;
-    margin-left: 20px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
-.calendar-header {
+.container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 10px;
-}
-
-#calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-  padding: 10px;
-  text-align: center;
-}
-
-.calendar-header button {
-    background: #d1d1d1;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-}
-
-.calendar-day {
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.calendar-day:hover {
-  background-color: #e3e3e3;
-}
-
-.day-header {
-  font-weight: bold;
-  background: #ddd;
-}
-
-.empty {
-  background: none;
-  border: none;
-}
-
-.calendar-header button:hover {
-    background: #b0b0b0;
-}
-
-#month-year {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.calendar-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.calendar-table th, .calendar-table td {
-    width: 14%;
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-
-.calendar-table th {
-    font-weight: bold;
-    background: #f0f0f0;
-}
-
-.calendar-table td {
-    height: 40px;
-    cursor: pointer;
-}
-
-.calendar-cell {
-  height: 40px;
-  cursor: pointer;
-  transition: background 0.3s;
-  text-align: center;
-  vertical-align: middle;
-  font-weight: bold;
-}
-
-.calendar-cell[data-status="unset"] { background: white; color: black; }
-.calendar-cell[data-status="free"] { background: green; color: white; }
-.calendar-cell[data-status="full"] { background: yellow; color: black; }
-.calendar-cell[data-status="closed"] { background: red; color: white; }
-
-.modal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 50px auto;
   padding: 20px;
+  background: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  z-index: 1000;
 }
 
-.modal-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.reservation-container {
+  width: 50%;
 }
 
-.modal select {
-  padding: 5px;
-  margin: 10px;
+.reservation-container h2 {
+  text-align: left;
+  color: #333;
 }
 
-.modal button {
-  padding: 8px 12px;
-  margin: 5px;
-  cursor: pointer;
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group span {
+  color: red;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #007b3d;
+  color: white;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
 }
 
-#saveStatus {
-  background: green;
-  color: white;
+button:hover {
+  background: #28a745;
 }
 
-#closeModal {
-  background: gray;
-  color: white;
+.image-container {
+  width: 50%;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* responsive design */
+@media (max-width: 900px) {
+  .container {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .reservation-container, .image-container {
+      width: 100%;
+  }
+
+  .image-container img {
+      max-width: 150%;
+      margin: auto;
+  }
 }
