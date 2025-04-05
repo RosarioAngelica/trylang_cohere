@@ -85,14 +85,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         );
 
         if ($stmt->execute()) {
-            echo "Reservation successfully made!";
+            echo "<script>alert('Reservation successfully made!');</script>";
         } else {
-            echo "Error: " . $stmt->error;
+            echo "<script>alert('Error: " . $stmt->error . "');</script>";
         }
 
         $stmt->close();
     } else {
-        echo "Error: " . $patronStmt->error;
+        echo "<script>alert('Error: " . $patronStmt->error . "');</script>";
     }
 
     $patronStmt->close();
@@ -188,6 +188,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="submit">Submit Inquiry</button>
                 </div>
             </form>
+        </div>
+        
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <button id="prevMonth">◀</button>
+                <span id="month-year"></span>
+                <button id="nextMonth">▶</button>
+            </div>
+            <div id="calendar"></div>
         </div>
     </div>
     <script src="../script/p_make_reservation.js"></script>

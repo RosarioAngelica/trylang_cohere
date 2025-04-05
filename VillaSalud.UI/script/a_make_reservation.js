@@ -46,19 +46,19 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        if (venueSelect.value === "Others" && !otherVenueInput.value.trim()) {
+        if (!venueSelect.value || (venueSelect.value === "Others" && !otherVenueInput.value.trim())) {
             alert("Please specify the venue.");
             event.preventDefault();
             return;
         }
 
-        if (eventTypeSelect.value === "Others" && !otherEventTypeInput.value.trim()) {
+        if (!eventTypeSelect.value || (eventTypeSelect.value === "Others" && !otherEventTypeInput.value.trim())) {
             alert("Please specify the event type.");
             event.preventDefault();
             return;
         }
 
-        if (themeMotifSelect.value === "Others" && !otherThemeMotifInput.value.trim()) {
+        if (!themeMotifSelect.value || (themeMotifSelect.value === "Others" && !otherThemeMotifInput.value.trim())) {
             alert("Please specify the theme/motif.");
             event.preventDefault();
             return;

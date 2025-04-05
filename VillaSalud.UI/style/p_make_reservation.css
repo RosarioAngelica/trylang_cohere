@@ -78,12 +78,17 @@ body {
   color: red;
 }
 
-.form-group input {
+.form-group input, .form-group textarea, .form-group select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: vertical;
 }
 
 button {
@@ -111,19 +116,104 @@ button:hover {
   border-radius: 10px;
 }
 
+/* Calendar Styles */
+.calendar-container {
+  width: 350px;
+  margin-left: 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px;
+}
+
+#calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+.calendar-header button {
+  background: #d1d1d1;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  width: auto;
+}
+
+.calendar-day {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.calendar-day:hover {
+  background-color: #e3e3e3;
+}
+
+.day-header {
+  font-weight: bold;
+  background: #ddd;
+}
+
+.empty {
+  background: none;
+  border: none;
+}
+
+.calendar-header button:hover {
+  background: #b0b0b0;
+}
+
+#month-year {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Status colors for calendar days */
+.calendar-day[data-status="free"] {
+  background: green;
+  color: white;
+}
+
+.calendar-day[data-status="full"] {
+  background: yellow;
+  color: black;
+}
+
+.calendar-day[data-status="closed"] {
+  background: red;
+  color: white;
+}
+
 /* responsive design */
 @media (max-width: 900px) {
   .container {
-      flex-direction: column;
-      text-align: center;
+    flex-direction: column;
+    text-align: center;
   }
 
-  .reservation-container, .image-container {
-      width: 100%;
+  .reservation-container, .calendar-container {
+    width: 100%;
+    margin-left: 0;
   }
 
   .image-container img {
-      max-width: 150%;
-      margin: auto;
+    max-width: 150%;
+    margin: auto;
   }
 }
