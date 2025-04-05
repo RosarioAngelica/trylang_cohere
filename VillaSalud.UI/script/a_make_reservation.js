@@ -91,6 +91,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         calendar.innerHTML = "";
         
+        // Add day of week headers
+        const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        daysOfWeek.forEach(day => {
+            const dayHeader = document.createElement("div");
+            dayHeader.classList.add("calendar-day", "day-header");
+            dayHeader.textContent = day;
+            calendar.appendChild(dayHeader);
+        });
+        
         // Fill empty days before the first day of the month
         for (let i = 0; i < firstDay; i++) {
             const emptyCell = document.createElement("div");

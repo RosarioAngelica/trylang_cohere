@@ -129,13 +129,15 @@ button:hover {
     }
 }
   
+
 .calendar-container {
-    width: 350px;
-    margin-left: 20px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  margin-left: 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Prevents content from spilling out */
 }
 
 .calendar-header {
@@ -153,23 +155,26 @@ button:hover {
   gap: 5px;
   padding: 10px;
   text-align: center;
+  width: 100%; /* Ensures the calendar fits the container width */
 }
 
 .calendar-header button {
-    background: #d1d1d1;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
+  background: #d1d1d1;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  width: auto; /* Override the 100% width from the generic button style */
 }
 
 .calendar-day {
-  padding: 10px;
+  padding: 8px 5px; /* Reduced padding to make elements smaller */
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   cursor: pointer;
   transition: 0.3s;
+  font-size: 14px; /* Smaller font size to fit better */
 }
 
 .calendar-day:hover {
@@ -187,43 +192,48 @@ button:hover {
 }
 
 .calendar-header button:hover {
-    background: #b0b0b0;
+  background: #b0b0b0;
 }
 
 #month-year {
-    font-size: 20px;
-    font-weight: bold;
+  font-size: 18px; /* Slightly smaller font size */
+  font-weight: bold;
 }
 
 .calendar-table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Ensures even column widths */
 }
 
 .calendar-table th, .calendar-table td {
-    width: 14%;
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ddd;
+  width: 14.28%; /* Even distribution for 7 columns (100% ÷ 7) */
+  padding: 8px 2px; /* Reduced padding */
+  text-align: center;
+  border: 1px solid #ddd;
 }
 
 .calendar-table th {
-    font-weight: bold;
-    background: #f0f0f0;
+  font-weight: bold;
+  background: #f0f0f0;
 }
 
 .calendar-table td {
-    height: 40px;
-    cursor: pointer;
+  height: 30px; /* Reduced height */
+  cursor: pointer;
 }
 
 .calendar-cell {
-  height: 40px;
+  height: 30px; /* Reduced height */
   cursor: pointer;
   transition: background 0.3s;
   text-align: center;
   vertical-align: middle;
   font-weight: bold;
+}
+
+.calendar-container button {
+  width: auto;
 }
 
 .calendar-cell[data-status="unset"] { background: white; color: black; }
