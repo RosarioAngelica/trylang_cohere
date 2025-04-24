@@ -1,0 +1,161 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Playfair Display", serif;
+    background: beige;
+}
+  
+.header-image {
+    width: 100%;
+    height: 90px;
+    background: url("../assets/background.jpeg") no-repeat center center/cover;
+}
+  
+.navbar {
+    display: flex;
+    justify-content: center;
+    background: white;
+    padding: 10px 0;
+    border-bottom: 2px solid black;
+}
+  
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+  
+.navbar li {
+    display: inline;
+}
+  
+.navbar a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+  
+.navbar a.active {
+    text-decoration: underline;
+}
+  
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+    flex-wrap: wrap;
+}
+  
+.admin-profile {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 350px;
+    text-align: center;
+}
+  
+.profile-header {
+    padding-bottom: 15px;
+}
+  
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #007b3d;
+    margin-bottom: 10px;
+}
+  
+h2 {
+    margin: 5px 0;
+}
+  
+h3 {
+    margin-bottom: 10px;
+    color: #007b3d;
+}
+  
+.profile-info p {
+    font-size: 16px;
+    margin: 8px 0;
+}
+  
+.change-password {
+    color: #007b3d;
+    text-decoration: none;
+    font-size: 14px;
+}
+  
+.change-password:hover {
+    text-decoration: underline;
+}
+  
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+  
+.edit-btn {
+    background: #007b3d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+  
+.edit-btn:hover {
+    background: #00592a;
+}
+  
+.logout-btn {
+    background: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+  
+.logout-btn:hover {
+    background: #a71d2a;
+}
+  
+  /* Activity Section */
+.admin-activity {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 400px;
+}
+  
+.admin-activity ul {
+    list-style: none;
+    padding: 0;
+}
+  
+.admin-activity li {
+    font-size: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid #ccc;
+}
+  
+.admin-activity li span {
+    color: green;
+    font-weight: bold;
+}
+  
+.admin-activity small {
+    color: gray;
+}
+  

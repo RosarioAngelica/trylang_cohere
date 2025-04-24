@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Villa Salud</title>
+  <link rel="stylesheet" href="../style/admin_profile.css">
+</head>
+<body>
+  <header class="header-image"></header>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="p_view_reservation.html">View Reservation</a></li>
+      <li><a href="p_make_reservation.html">Make Reservation</a></li>
+      <li><a href="feedback.html">Feedback</a></li>
+    </ul>
+  </nav>
+
+  <section class="dashboard-container">
+    <div class="admin-profile">
+      <div class="profile-header">
+        <img src="../assets/admin_picture.jpg" alt="Admin Profile Picture" class="profile-pic">
+        <h2>John Doe</h2>
+        <p>System Administrator</p>
+      </div>
+      <div class="profile-info">
+        <h3>Profile Information</h3>
+        <p><strong>Email:</strong> admin@villasalud.com</p>
+        <p><strong>Phone:</strong> 0912-345-6789</p>
+        <p><strong>Username:</strong> admin_john</p>
+        <p><strong>Password:</strong> •••••••• <a href="#" class="change-password">Change</a></p>
+      </div>
+      <div class="buttons">
+        <button class="edit-btn">Edit Profile</button>
+        <button class="logout-btn">Logout</button>
+      </div>
+    </div>
+
+    <div class="admin-activity">
+      <h3>Recent Activities</h3>
+      <ul>
+        <li><span>✔</span> Approved a reservation - <small>10 mins ago</small></li>
+        <li><span>✔</span> Updated pricing for Wedding Package - <small>1 hour ago</small></li>
+        <li><span>✔</span> Responded to a customer inquiry - <small>Yesterday</small></li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>
