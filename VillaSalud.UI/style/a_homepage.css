@@ -1,9 +1,8 @@
-/* === General Styles === */
 body {
   margin: 0;
   padding: 0;
   font-family: "Playfair Display", serif;
-  background: #fdfaf4;
+  background: #fdfaf4; /* Soft beige */
 }
 
 /* === Header === */
@@ -17,9 +16,9 @@ body {
 .navbar {
   display: flex;
   justify-content: center;
-  background: white;
+  background: #fff;
   padding: 15px 0;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #ccc;
 }
 
 .navbar ul {
@@ -35,17 +34,17 @@ body {
 
 .navbar a {
   text-decoration: none;
-  color: black;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 5px 10px;
-  transition: color 0.2s ease-in-out;
+  color: #333;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 6px 12px;
+  transition: 0.2s ease-in-out;
 }
 
 .navbar a:hover,
 .navbar a.active {
   color: #007b3d;
-  text-decoration: underline;
+  border-bottom: 2px solid #007b3d;
 }
 
 /* === Banner === */
