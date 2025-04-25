@@ -127,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form method="POST" action="p_make_reservation.php">
                 <div class="form-group">
                     <label for="name">Name:<span>*</span></label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" placeholder="First Name, Last Name"required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email:<span>*</span></label>
@@ -136,10 +136,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <label for="contact">Contact Number:<span>*</span></label>
                     <input type="tel" id="contact" name="contact_number" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message:<span>*</span></label>
-                    <textarea id="message" name="message" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="date">Date:<span>*</span></label>
@@ -184,6 +180,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="Others">Others</option>
                     </select>
                     <input type="text" id="otherThemeMotif" name="other_theme_motif" style="display: none;" placeholder="Please specify">
+                </div>
+                <div class="form-group">
+                    <label for="message">Other Request:<span>*</span></label>
+                    <textarea id="message" name="message" required></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit">Submit Inquiry</button>
