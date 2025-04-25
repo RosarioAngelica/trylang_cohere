@@ -116,6 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a href="../pages/p_homepage.html">Home</a></li>
             <li><a href="#" class="active">Make Reservation</a></li>
             <li><a href="../pages/p_view_reservation.html">View Reservation</a></li>
+            <li><a href="../pages/payment_order.html" >Payment Order</a></li>
             <li><a href="../pages/faqs.html">FAQs</a></li>
             <li><a href="../pages/feedback.php">Feedback</a></li>
         </ul>
