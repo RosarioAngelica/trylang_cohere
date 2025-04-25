@@ -116,44 +116,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a href="../pages/a_inquiries.html">View Inquiries</a></li>
             <li><a href="../pages/a_make_reservation.php" class="active">Make Reservation</a></li>
             <li><a href="../pages/a_view_report.html">View Report</a></li>
-            <li><a href="../pages/admin_profile.html">Admin Profile</a></li>
         </ul>
     </nav>
 
     <div class="container"> 
         <div class="reservation-container">
-            <h2>Let's bring your vision to life—just fill out the form.</h2>
-            <form method="POST" action="a_make_reservation.php">
+        <h2>Let's bring your vision to life—just fill out the form.</h2>
+            <form method="POST" action="p_make_reservation.php">
                 <div class="form-group">
                     <label for="name">Name:<span>*</span></label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" placeholder="First Name, Last Name"required>
                 </div>
-
                 <div class="form-group">
                     <label for="email">Email:<span>*</span></label>
                     <input type="email" id="email" name="email" required>
                 </div>
-
                 <div class="form-group">
                     <label for="contact">Contact Number:<span>*</span></label>
                     <input type="tel" id="contact" name="contact_number" required>
                 </div>
-
-                <div class="form-group">
-                    <label for="message">Message:<span>*</span></label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-
                 <div class="form-group">
                     <label for="date">Date:<span>*</span></label>
                     <input type="date" id="date" name="date" required>
                 </div>
-
                 <div class="form-group">
                     <label for="time">Time:<span>*</span></label>
                     <input type="time" id="time" name="time" required>
                 </div>
-
                 <div class="form-group">
                     <label for="venue">Venue:<span>*</span></label>
                     <select id="venue" name="venue">
@@ -165,7 +154,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </select>
                     <input type="text" id="otherVenue" name="other_venue" style="display: none;" placeholder="Please specify">
                 </div>
-
                 <div class="form-group">
                     <label for="event_type">Event Type:<span>*</span></label>
                     <select id="event_type" name="event_type">
@@ -179,7 +167,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </select>
                     <input type="text" id="otherEventType" name="other_event_type" style="display: none;" placeholder="Please specify">
                 </div>
-                
                 <div class="form-group">
                     <label for="theme_motif">Theme/Motif:<span>*</span></label>
                     <select id="theme_motif" name="theme_motif">
@@ -192,13 +179,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </select>
                     <input type="text" id="otherThemeMotif" name="other_theme_motif" style="display: none;" placeholder="Please specify">
                 </div>
-
+                <div class="form-group">
+                    <label for="message">Other Request:<span>*</span></label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
                 <div class="form-group">
                     <button type="submit">Submit Inquiry</button>
                 </div>
             </form>
         </div>
-
+        
         <div class="calendar-container">
             <div class="calendar-header">
                 <button id="prevMonth">◀</button>
@@ -207,6 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div id="calendar"></div>
         </div>
+    </div>
 
         <!-- Admin Status Selection Modal -->
         <div id="statusModal" class="modal">

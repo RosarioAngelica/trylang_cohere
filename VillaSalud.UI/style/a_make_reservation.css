@@ -1,23 +1,25 @@
+/* === Global Styles === */
 body {
   margin: 0;
   padding: 0;
   font-family: "Playfair Display", serif;
-  background: beige;
+  background: #fdfaf4; /* Soft beige */
 }
 
+/* === Header === */
 .header-image {
   width: 100%;
   height: 90px;
-  background: url("../assets/background_picture.jpeg") no-repeat center
-    center/cover;
+  background: url("../assets/background_picture.jpeg") no-repeat center center/cover;
 }
 
+/* === Navbar === */
 .navbar {
   display: flex;
   justify-content: center;
-  background: white;
-  padding: 10px 0;
-  border-bottom: 2px solid black;
+  background: #fff;
+  padding: 15px 0;
+  border-bottom: 2px solid #ccc;
 }
 
 .navbar ul {
@@ -33,111 +35,207 @@ body {
 
 .navbar a {
   text-decoration: none;
-  color: black;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 5px 10px;
+  color: #333;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 6px 12px;
+  transition: 0.2s ease-in-out;
 }
 
+.navbar a:hover,
 .navbar a.active {
-  text-decoration: underline;
+  color: #007b3d;
+  border-bottom: 2px solid #007b3d;
 }
-  
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-  
-.reservation-container {
-    width: 50%;
-}
-  
-.reservation-container h2 {
-    text-align: left;
-    color: #333;
-}
-  
-.form-group {
-    margin-bottom: 15px;
-}
-  
-.form-group label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
-  
-.form-group span {
-    color: red;
-}
-  
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-  
-button {
-    width: 100%;
-    padding: 10px;
-    background: #007b3d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-}
-  
-button:hover {
-    background: #28a745;
-}
-  
-.image-container {
-    width: 50%;
-}
-  
-.image-container img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-  
-  /* responsive design */
-@media (max-width: 900px) {
-  .container {
-        flex-direction: column;
-        text-align: center;
-  }
-  
-  .reservation-container, .image-container {
-        width: 100%;
-  }
-  
-  .image-container img {
-        max-width: 150%;
-        margin: auto;
-    }
-}
-  
 
+/* === Layout Container === */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* === Reservation Form === */
+.reservation-container {
+  width: 50%;
+}
+
+.reservation-container h2 {
+  margin-bottom: 30px;
+  color: #2b2b2b;
+  font-size: 22px;
+}
+
+/* === Form Styling (Updated) === */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form-group span {
+  color: red;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 75%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #007b3d;
+  box-shadow: 0 0 5px rgba(0, 123, 61, 0.25);
+  outline: none;
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.form-group button {
+  width: 75%;
+  padding: 10px;
+  background: #007b3d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.form-group button:hover {
+  background: #28a745;
+}
+
+/* === Calendar === */
 .calendar-container {
   width: 350px;
-  margin-left: 20px;
   padding: 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Prevents content from spilling out */
+  background: #fefefe;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.calendar-header button {
+  background: #e0e0e0;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.calendar-header button:hover {
+  background: #c5c5c5;
+}
+
+#calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  padding-top: 10px;
+}
+
+.calendar-day {
+  padding: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.calendar-day:hover {
+  background-color: #f0f0f0;
+}
+
+.day-header {
+  font-weight: bold;
+  background: #f2f2f2;
+}
+
+.empty {
+  background: none;
+  border: none;
+}
+
+/* Calendar Status Colors */
+.calendar-day[data-status="free"] {
+  background: #28a745;
+  color: white;
+}
+
+.calendar-day[data-status="full"] {
+  background: #ffc107;
+  color: black;
+}
+
+.calendar-day[data-status="closed"] {
+  background: #dc3545;
+  color: white;
+}
+
+/* === Responsive === */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .reservation-container,
+  .calendar-container {
+    width: 100%;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea,
+  .form-group button {
+    width: 100%;
+  }
+}
+  
+.calendar-container {
+    width: 350px;
+    margin-left: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .calendar-header {
@@ -155,26 +253,23 @@ button:hover {
   gap: 5px;
   padding: 10px;
   text-align: center;
-  width: 100%; /* Ensures the calendar fits the container width */
 }
 
 .calendar-header button {
-  background: #d1d1d1;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 5px;
-  width: auto; /* Override the 100% width from the generic button style */
+    background: #d1d1d1;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
 }
 
 .calendar-day {
-  padding: 8px 5px; /* Reduced padding to make elements smaller */
+  padding: 10px;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   cursor: pointer;
   transition: 0.3s;
-  font-size: 14px; /* Smaller font size to fit better */
 }
 
 .calendar-day:hover {
@@ -192,48 +287,43 @@ button:hover {
 }
 
 .calendar-header button:hover {
-  background: #b0b0b0;
+    background: #b0b0b0;
 }
 
 #month-year {
-  font-size: 18px; /* Slightly smaller font size */
-  font-weight: bold;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .calendar-table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed; /* Ensures even column widths */
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .calendar-table th, .calendar-table td {
-  width: 14.28%; /* Even distribution for 7 columns (100% ÷ 7) */
-  padding: 8px 2px; /* Reduced padding */
-  text-align: center;
-  border: 1px solid #ddd;
+    width: 14%;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
 }
 
 .calendar-table th {
-  font-weight: bold;
-  background: #f0f0f0;
+    font-weight: bold;
+    background: #f0f0f0;
 }
 
 .calendar-table td {
-  height: 30px; /* Reduced height */
-  cursor: pointer;
+    height: 40px;
+    cursor: pointer;
 }
 
 .calendar-cell {
-  height: 30px; /* Reduced height */
+  height: 40px;
   cursor: pointer;
   transition: background 0.3s;
   text-align: center;
   vertical-align: middle;
   font-weight: bold;
-}
-
-.calendar-container button {
-  width: auto;
 }
 
 .calendar-cell[data-status="unset"] { background: white; color: black; }
