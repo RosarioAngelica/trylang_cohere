@@ -1,23 +1,25 @@
+/* === Global Styles === */
 body {
   margin: 0;
   padding: 0;
   font-family: "Playfair Display", serif;
-  background: beige;
+  background: #fdfaf4; /* Soft beige */
 }
 
+/* === Header === */
 .header-image {
   width: 100%;
   height: 90px;
-  background: url("../assets/background_picture.jpeg") no-repeat center
-    center/cover;
+  background: url("../assets/background_picture.jpeg") no-repeat center center/cover;
 }
 
+/* === Navbar === */
 .navbar {
   display: flex;
   justify-content: center;
-  background: white;
-  padding: 10px 0;
-  border-bottom: 2px solid black;
+  background: #fff;
+  padding: 15px 0;
+  border-bottom: 2px solid #ccc;
 }
 
 .navbar ul {
@@ -33,22 +35,19 @@ body {
 
 .navbar a {
   text-decoration: none;
-  color: black;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 5px 10px;
+  color: #333;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 6px 12px;
+  transition: 0.2s ease-in-out;
 }
 
+.navbar a:hover,
 .navbar a.active {
-  text-decoration: underline;
+  color: #007b3d;
+  border-bottom: 2px solid #007b3d;
 }
-
-.banner-container {
-  display: flex;
-  justify-content: center;
-  padding: 10px 0;
-}
-
+/* === Banner === */
 .banner {
   background: #007b3d;
   color: white;
@@ -57,11 +56,13 @@ body {
   font-weight: bold;
   padding: 12px;
   width: 50%;
-  max-width: 500%;
+  max-width: 100%;
   border-radius: 10px;
+  margin: 20px auto;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* === Reservation Section === */
 .reservation-container {
   display: flex;
   justify-content: space-between;
@@ -96,6 +97,7 @@ body {
   padding-left: 30px;
 }
 
+/* === Buttons === */
 button.view-details {
   background-color: #007b3d;
   color: white;
@@ -111,6 +113,7 @@ button.view-details:hover {
   background-color: darkgreen;
 }
 
+/* === Form Styles === */
 form label {
   display: block;
   margin-bottom: 8px;
@@ -123,12 +126,10 @@ form input {
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 
-button.view-details:hover {
-  background-color: darkgreen;
-}
-
+/* === Calendar === */
 .calendar {
   width: 35%;
   text-align: center;
@@ -155,6 +156,7 @@ table td {
   text-align: center;
 }
 
+/* === Calendar Controls === */
 button.prev-month,
 button.next-month {
   background-color: #ddd;

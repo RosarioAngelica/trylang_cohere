@@ -2,22 +2,27 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Playfair Display", serif;
-  background: beige;
+  background: #fdfaf4; /* Soft beige */
 }
 
+/* === Header === */
 .header-image {
   width: 100%;
   height: 90px;
-  background: url("../assets/background_picture.jpeg") no-repeat center
-    center/cover;
+  background: url("../assets/background_picture.jpeg") no-repeat center center/cover;
+  background-size: cover;
+  object-fit: cover;
 }
 
+/* === Navbar === */
 .navbar {
   display: flex;
   justify-content: center;
-  background: white;
-  padding: 10px 0;
-  border-bottom: 2px solid black;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px 0;
+  border-bottom: 2px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Light shadow for depth */
 }
 
 .navbar ul {
@@ -28,71 +33,130 @@ body {
 }
 
 .navbar li {
-  display: inline;
+  display: inline-block;
 }
 
 .navbar a {
   text-decoration: none;
-  color: black;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 5px 10px;
+  color: #333;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 6px 12px;
+  transition: 0.3s ease;
 }
 
+.navbar a:hover,
 .navbar a.active {
-  text-decoration: underline;
+  color: #007b3d;
+  border-bottom: 2px solid #007b3d;
 }
 
+/* === FAQ Section === */
 .faq-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevated look */
 }
 
 .faq-container h1 {
-    text-align: center;
-    font-size: 32px;
-    margin-bottom: 20px;
+  text-align: center;
+  font-size: 32px;
+  color: #007b3d;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .faq {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  transition: background-color 0.3s ease;
+}
+
+.faq:hover {
+  background-color: #f9f9f9; /* Light hover effect for FAQ items */
 }
 
 .faq-question {
-    width: 100%;
-    background: none;
-    border: none;
-    text-align: left;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.faq-question:hover {
+  color: #007b3d; /* Highlight on hover */
+  transform: translateX(5px); /* Slight move effect on hover */
 }
 
 .faq-answer {
-    display: none;
-    padding: 10px;
-    font-size: 16px;
-    color: #333;
+  display: none;
+  padding: 10px;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
 }
 
 .arrow {
-    font-size: 18px;
-    transition: transform 0.3s ease-in-out;
+  font-size: 18px;
+  transition: transform 0.3s ease-in-out;
 }
 
 .faq.active .arrow {
-    transform: rotate(180deg);
+  transform: rotate(180deg); /* Smooth rotation for the arrow */
 }
 
 .faq.active .faq-answer {
-    display: block;
+  display: block;
+  animation: fadeIn 0.3s ease-out; /* Smooth fade-in animation */
+}
+
+/* === Animation for FAQ Answer Fade-In === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+  /* Navbar adjustments */
+  .navbar {
+    padding: 10px 0; /* Slightly smaller navbar padding on mobile */
+  }
+
+  .navbar ul {
+    gap: 20px; /* Reduce gap between navbar items */
+  }
+
+  /* FAQ adjustments */
+  .faq-container {
+    padding: 15px;
+    margin: 20px;
+  }
+
+  .faq-container h1 {
+    font-size: 28px; /* Smaller header font on mobile */
+  }
+
+  .faq-question {
+    font-size: 16px; /* Smaller font size for questions */
+  }
+
+  .faq-answer {
+    font-size: 14px; /* Adjust answer text size for mobile */
+  }
 }

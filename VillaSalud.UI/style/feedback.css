@@ -1,23 +1,25 @@
+/* === Global Styles === */
 body {
   margin: 0;
   padding: 0;
   font-family: "Playfair Display", serif;
-  background: beige;
+  background: #fdfaf4; /* Soft beige */
 }
 
+/* === Header === */
 .header-image {
   width: 100%;
   height: 90px;
-  background: url("../assets/background_picture.jpeg") no-repeat center
-    center/cover;
+  background: url("../assets/background_picture.jpeg") no-repeat center center/cover;
 }
 
+/* === Navbar === */
 .navbar {
   display: flex;
   justify-content: center;
-  background: white;
-  padding: 10px 0;
-  border-bottom: 2px solid black;
+  background: #fff;
+  padding: 15px 0;
+  border-bottom: 2px solid #ccc;
 }
 
 .navbar ul {
@@ -33,20 +35,23 @@ body {
 
 .navbar a {
   text-decoration: none;
-  color: black;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 5px 10px;
+  color: #333;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 6px 12px;
+  transition: 0.2s ease-in-out;
 }
 
+.navbar a:hover,
 .navbar a.active {
-  text-decoration: underline;
+  color: #007b3d;
+  border-bottom: 2px solid #007b3d;
 }
-
+/* === Main Container === */
 .container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   width: 80%;
   max-width: 1200px;
   background: white;
@@ -58,12 +63,15 @@ body {
   padding: 20px;
 }
 
+/* === Left and Right Sections === */
 .left-section,
 .right-section {
   flex: 1;
   padding: 20px;
+  box-sizing: border-box;
 }
 
+/* === Contact Box === */
 .contact-box {
   border: 2px solid #007b3d;
   padding: 20px;
@@ -72,6 +80,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* === Headings === */
 h1 {
   font-size: 24px;
   color: #333;
@@ -82,9 +91,11 @@ h2 {
   text-align: center;
 }
 
+/* === Form Styles === */
 label {
   display: block;
   margin-top: 10px;
+  font-weight: 600;
 }
 
 input,
@@ -94,8 +105,10 @@ textarea {
   margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
+/* === Button === */
 button {
   width: 100%;
   padding: 10px;
@@ -106,19 +119,22 @@ button {
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
+  transition: background 0.3s;
 }
 
 button:hover {
   background: #00592a;
 }
 
+/* === Map Section === */
 .right-section iframe {
   width: 100%;
-  height: 800px; 
+  height: 800px;
   border: none;
   border-radius: 5px;
 }
 
+/* === Contact Info === */
 .contact-info {
   margin-top: 20px;
   text-align: center;
@@ -129,6 +145,7 @@ button:hover {
   color: #007b3d;
 }
 
+/* === Responsive === */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -137,9 +154,10 @@ button:hover {
   .left-section,
   .right-section {
     width: 100%;
+    padding: 15px;
   }
 
   .right-section iframe {
-    height: 300px; 
+    height: 300px;
   }
 }
