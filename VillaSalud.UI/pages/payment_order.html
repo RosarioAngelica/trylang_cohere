@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Order System</title>
+    <link rel="stylesheet" href="../style/payment_order.css">
+</head>
+<body>
+    <header class="header-image"></header>
+    <nav class="navbar">
+        <ul>
+            <li><a href="../pages/p_homepage.html">Home</a></li>
+            <li><a href="../pages/p_make_reservation.php">Make Reservation</a></li>
+            <li><a href="../pages/p_view_reservation.html">View Reservation</a></li>
+            <li><a href="#" class="active">Payment Order</a></li>
+            <li><a href="../pages/faqs.html">FAQs</a></li>
+            <li><a href="../pages/feedback.php">Feedback</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <header>
+            <h1>Payment Order System</h1>
+            <p>Complete your order by selecting a payment method</p>
+        </header>
+
+        <!-- Order Form Section -->
+        <section id="orderForm" class="order-form">
+            <h2>Fill out your order details</h2>
+
+            <form id="paymentForm" novalidate>
+                <div class="form-group">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" required aria-label="Full Name" placeholder="Enter your full name">
+                    <div class="input-error" id="fullNameError">Please enter your full name</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" required aria-label="Email Address" placeholder="your.email@example.com">
+                    <div class="input-error" id="emailError">Please enter a valid email address</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="orderAmount">Order Amount (PHP):</label>
+                    <input type="number" id="orderAmount" min="100" required aria-label="Order Amount" placeholder="Minimum amount: PHP 100">
+                    <div class="input-error" id="orderAmountError">Please enter an amount of at least PHP 100</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="downpaymentType">Downpayment Option:</label>
+                    <select id="downpaymentType" aria-label="Downpayment Option">
+                        <option value="full">Full Payment (100%)</option>
+                        <option value="half">Half Payment (50%)</option>
+                        <option value="thirty">Partial Payment (30%)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="paymentMethod">Payment Method:</label>
+                    <select id="paymentMethod" aria-label="Payment Method">
+                        <option value="gcash">GCash</option>
+                        <option value="bank">Bank Transfer</option>
+                    </select>
+                </div>
+
+                <button type="button" id="generateOrder">Generate Payment Order</button>
+            </form>
+        </section>
+
+        <!-- Payment Instructions Section -->
+        <section id="paymentInstructions" class="payment-instructions">
+            <h2>Payment Instructions</h2>
+
+            <div id="amountDetails">
+                <p><strong>Order Total:</strong> PHP <span id="totalAmount">0.00</span></p>
+                <p><strong>Downpayment Amount:</strong> PHP <span id="downpaymentAmount">0.00</span> <span id="paymentBadge" class="payment-badge">FULL PAYMENT</span></p>
+            </div>
+
+            <!-- Payment Methods -->
+            <div id="gcashInstructions" class="payment-method">
+                <h3>GCash Payment Instructions</h3>
+                <ol class="steps">
+                    <li>Open your GCash app</li>
+                    <li>Tap on "Send Money"</li>
+                    <li>Select "Send to GCash Account"</li>
+                    <li>Enter mobile number: <strong>09123456789</strong></li>
+                    <li>Enter the amount: PHP <span class="payment-amount">0.00</span></li>
+                    <li>Add a message: "Order Payment - <span id="customerName"></span>"</li>
+                    <li>Review the details and tap "Send"</li>
+                    <li>After sending, email a screenshot of your payment to <strong>orders@example.com</strong></li>
+                </ol>
+                <p><strong>Reference Number:</strong> <span id="referenceNumber">ORD-XXXX-XXXX</span></p>
+            </div>
+
+            <div id="bankInstructions" class="payment-method">
+                <h3>Bank Transfer Instructions</h3>
+                <ol class="steps">
+                    <li>Log in to your online banking app/website</li>
+                    <li>Select "Transfer" or "Send Money"</li>
+                    <li>Choose "To Another Bank" if applicable</li>
+                    <li>Enter these bank details:
+                        <ul>
+                            <li>Bank: <strong>BDO (Banco De Oro)</strong></li>
+                            <li>Account Name: <strong>Company Name Inc.</strong></li>
+                            <li>Account Number: <strong>1234-5678-9012</strong></li>
+                        </ul>
+                    </li>
+                    <li>Enter the amount: PHP <span class="payment-amount">0.00</span></li>
+                    <li>Use the note "Order Payment - <span class="customer-name">Your Name</span>"</li>
+                    <li>Complete the transfer</li>
+                    <li>Email a screenshot of your payment to <strong>orders@example.com</strong></li>
+                </ol>
+                <p><strong>Reference Number:</strong> <span class="reference-number">ORD-XXXX-XXXX</span></p>
+            </div>
+
+            <!-- Receipt Upload Section -->
+            <div class="receipt-upload">
+                <h3>Upload Payment Receipt</h3>
+                <form id="receiptForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="receiptUpload">Attach Receipt:</label>
+                        <input type="file" id="receiptUpload" accept=".jpg,.jpeg,.png,.pdf" required aria-label="Upload Receipt">
+                        <div class="input-error" id="receiptError">Please upload a payment receipt</div>
+                    </div>
+                    <div class="loader">
+                        <div class="loader-spinner"></div>
+                        <p>Uploading your receipt...</p>
+                    </div>
+                    <button type="submit" id="submitReceipt">Submit Receipt</button>
+                </form>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                <p>Thank you for your payment! We will process your order within 24 hours.</p>
+            </div>
+
+            <button type="button" id="backButton">Back to Order Form</button>
+        </section>
+    </div>
+
+    <script src="../script/payment_order.js"></script>
+</body>
+</html>
