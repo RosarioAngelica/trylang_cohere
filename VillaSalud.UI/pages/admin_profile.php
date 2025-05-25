@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+// Check if admin is logged in
+if (!isset($_SESSION["admin_id"])) {
+    echo "<script>alert('Please log in first!'); window.location.href='login.php';</script>";
+    exit;
+}
+
+// Get admin data from session
+$admin_name = isset($_SESSION["admin_name"]) ? $_SESSION["admin_name"] : "Admin User";
+$admin_email = isset($_SESSION["admin_email"]) ? $_SESSION["admin_email"] : "admin@villasalud.com";
+$admin_phone = isset($_SESSION["admin_phone"]) ? $_SESSION["admin_phone"] : "N/A";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,25 +41,26 @@
           <button class="change-pic-btn" id="change-pic-btn">📷</button>
           <input type="file" id="profile-pic-input" accept="image/*">
         </div>
-        <h2 id="admin-name">John Doe</h2>
+        <h2 id="admin-name"><?php echo htmlspecialchars($admin_name); ?></h2>
         <p>System Administrator</p>
       </div>
       <div class="profile-info">
         <h3>Profile Information</h3>
-        <p><strong>Email:</strong> <span id="admin-email">admin@villasalud.com</span></p>
-        <p><strong>Phone:</strong> <span id="admin-phone">0912-345-6789</span></p>
-        <p><strong>Username:</strong> <span id="admin-username">admin_john</span></p>
+        <p><strong>Email:</strong> <span id="admin-email"><?php echo htmlspecialchars($admin_email); ?></span></p>
+        <p><strong>Phone:</strong> <span id="admin-phone"><?php echo htmlspecialchars($admin_phone); ?></span></p>
+        <p><strong>Username:</strong> <span id="admin-username"><?php echo htmlspecialchars(explode('@', $admin_email)[0]); ?></span></p>
         <p><strong>Password:</strong> •••••••• <a href="#" class="change-password" id="change-password-link">Change</a></p>
       </div>
       <div class="buttons">
         <button class="edit-btn" id="edit-profile-btn">Edit Profile</button>
-        <button class="logout-btn" id="logout-btn">Logout</button>
+        <button class="logout-btn" id="logout-btn" onclick="logout()">Logout</button>
       </div>
     </div>
 
     <div class="admin-activity">
       <h3>Recent Activities</h3>
       <ul id="activity-list">
+        <li><span>✔</span> Logged in successfully - <small><?php echo date('M d, Y H:i'); ?></small></li>
         <li><span>✔</span> System initialized - <small>Just now</small></li>
       </ul>
     </div>
@@ -59,19 +74,19 @@
       <form id="edit-form">
         <div class="form-group">
           <label for="edit-name">Name:</label>
-          <input type="text" id="edit-name" name="name" required>
+          <input type="text" id="edit-name" name="name" value="<?php echo htmlspecialchars($admin_name); ?>" required>
         </div>
         <div class="form-group">
           <label for="edit-email">Email:</label>
-          <input type="email" id="edit-email" name="email" required>
+          <input type="email" id="edit-email" name="email" value="<?php echo htmlspecialchars($admin_email); ?>" required>
         </div>
         <div class="form-group">
           <label for="edit-phone">Phone:</label>
-          <input type="text" id="edit-phone" name="phone" required>
+          <input type="text" id="edit-phone" name="phone" value="<?php echo htmlspecialchars($admin_phone); ?>" required>
         </div>
         <div class="form-group">
           <label for="edit-username">Username:</label>
-          <input type="text" id="edit-username" name="username" required>
+          <input type="text" id="edit-username" name="username" value="<?php echo htmlspecialchars(explode('@', $admin_email)[0]); ?>" required>
         </div>
         <div class="modal-buttons">
           <button type="button" class="cancel-btn" id="cancel-edit">Cancel</button>
@@ -118,5 +133,12 @@
   </div>
 
   <script src="../script/admin_profile.js"></script>
+  <script>
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        window.location.href = 'logout.php';
+      }
+    }
+  </script>
 </body>
 </html>
