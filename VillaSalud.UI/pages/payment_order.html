@@ -21,7 +21,7 @@
     </nav>
     <div class="container">
         <header>
-            <h1>Payment Order System</h1>
+            <h1>Payment Order</h1>
             <p>Complete your order by selecting a payment method</p>
         </header>
 
@@ -43,9 +43,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="orderAmount">Order Amount (PHP):</label>
-                    <input type="number" id="orderAmount" min="100" required aria-label="Order Amount" placeholder="Minimum amount: PHP 100">
-                    <div class="input-error" id="orderAmountError">Please enter an amount of at least PHP 100</div>
+                    <label for="orderAmount">Payment Amount (PHP):</label>
+                    <input type="number" id="orderAmount" min="5000" required aria-label="Order Amount" placeholder="Minimum amount: PHP 5,000">
+                    <div class="input-error" id="orderAmountError">Please enter an amount of at least PHP 5,000</div>
                 </div>
 
                 <div class="form-group">
@@ -74,7 +74,7 @@
             <h2>Payment Instructions</h2>
 
             <div id="amountDetails">
-                <p><strong>Order Total:</strong> PHP <span id="totalAmount">0.00</span></p>
+                <p><strong>Payment:</strong> PHP <span id="totalAmount">0.00</span></p>
                 <p><strong>Downpayment Amount:</strong> PHP <span id="downpaymentAmount">0.00</span> <span id="paymentBadge" class="payment-badge">FULL PAYMENT</span></p>
             </div>
 

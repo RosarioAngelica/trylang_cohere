@@ -22,31 +22,101 @@
   <section class="dashboard-container">
     <div class="admin-profile">
       <div class="profile-header">
-        <img src="../assets/admin_picture.jpg" alt="Admin Profile Picture" class="profile-pic">
-        <h2>John Doe</h2>
+        <div class="profile-pic-container">
+          <img src="../assets/admin_picture.jpg" alt="Admin Profile Picture" class="profile-pic" id="profile-pic">
+          <button class="change-pic-btn" id="change-pic-btn">📷</button>
+          <input type="file" id="profile-pic-input" accept="image/*">
+        </div>
+        <h2 id="admin-name">John Doe</h2>
         <p>System Administrator</p>
       </div>
       <div class="profile-info">
         <h3>Profile Information</h3>
-        <p><strong>Email:</strong> admin@villasalud.com</p>
-        <p><strong>Phone:</strong> 0912-345-6789</p>
-        <p><strong>Username:</strong> admin_john</p>
-        <p><strong>Password:</strong> •••••••• <a href="#" class="change-password">Change</a></p>
+        <p><strong>Email:</strong> <span id="admin-email">admin@villasalud.com</span></p>
+        <p><strong>Phone:</strong> <span id="admin-phone">0912-345-6789</span></p>
+        <p><strong>Username:</strong> <span id="admin-username">admin_john</span></p>
+        <p><strong>Password:</strong> •••••••• <a href="#" class="change-password" id="change-password-link">Change</a></p>
       </div>
       <div class="buttons">
-        <button class="edit-btn">Edit Profile</button>
-        <button class="logout-btn">Logout</button>
+        <button class="edit-btn" id="edit-profile-btn">Edit Profile</button>
+        <button class="logout-btn" id="logout-btn">Logout</button>
       </div>
     </div>
 
     <div class="admin-activity">
       <h3>Recent Activities</h3>
-      <ul>
-        <li><span>✔</span> Approved a reservation - <small>10 mins ago</small></li>
-        <li><span>✔</span> Updated pricing for Wedding Package - <small>1 hour ago</small></li>
-        <li><span>✔</span> Responded to a customer inquiry - <small>Yesterday</small></li>
+      <ul id="activity-list">
+        <li><span>✔</span> System initialized - <small>Just now</small></li>
       </ul>
     </div>
   </section>
+
+  <!-- Edit Profile Modal -->
+  <div id="edit-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="close-modal">&times;</span>
+      <h3>Edit Profile</h3>
+      <form id="edit-form">
+        <div class="form-group">
+          <label for="edit-name">Name:</label>
+          <input type="text" id="edit-name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-email">Email:</label>
+          <input type="email" id="edit-email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-phone">Phone:</label>
+          <input type="text" id="edit-phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-username">Username:</label>
+          <input type="text" id="edit-username" name="username" required>
+        </div>
+        <div class="modal-buttons">
+          <button type="button" class="cancel-btn" id="cancel-edit">Cancel</button>
+          <button type="submit" class="save-btn">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Change Password Modal -->
+  <div id="password-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="close-password-modal">&times;</span>
+      <h3>Change Password</h3>
+      <form id="password-form">
+        <div class="form-group">
+          <label for="current-password">Current Password:</label>
+          <input type="password" id="current-password" name="current-password" required>
+        </div>
+        <div class="form-group">
+          <label for="new-password">New Password:</label>
+          <input type="password" id="new-password" name="new-password" required>
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm New Password:</label>
+          <input type="password" id="confirm-password" name="confirm-password" required>
+        </div>
+        <div class="modal-buttons">
+          <button type="button" class="cancel-btn" id="cancel-password">Cancel</button>
+          <button type="submit" class="save-btn">Update Password</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="success-modal" class="success-modal">
+    <div class="success-modal-content">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Success!</div>
+      <div class="success-message" id="success-message-text">Profile updated successfully!</div>
+      <button class="success-ok-btn" id="success-ok-btn">OK</button>
+    </div>
+  </div>
+
+  <script src="../script/admin_profile.js"></script>
 </body>
 </html>

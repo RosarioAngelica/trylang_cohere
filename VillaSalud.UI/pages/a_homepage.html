@@ -1,63 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Villa Salud Catering</title>
-    <link rel="stylesheet" href="../style/a_homepage.css" />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villa Salud Catering - Admin</title>
+    <link rel="stylesheet" href="../style/a_homepage.css"> 
+</head>
+<body>
+
     <header class="header-image"></header>
 
     <nav class="navbar">
-      <ul>
-        <li><a href="../pages/a_homepage.html" class="active">Home</a></li>
-        <li><a href="../pages/a_inquiries.html">View Inquiries</a></li>
-        <li><a href="../pages/a_make_reservation.php">Make Reservation</a></li>
-        <li><a href="../pages/a_view_report.html">View Report</a></li>
-        <li><a href="../pages/admin_profile.html">Admin Profile</a></li>
-    </ul>
+        <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="../pages/a_inquiries.html">View Inquiries</a></li>
+            <li><a href="../pages/a_make_reservation.php">Make Reservation</a></li>
+            <li><a href="../pages/a_view_report.html">View Report</a></li>
+            <li><a href="../pages/admin_profile.html">Admin Profile</a></li>
+        </ul>
     </nav>
 
     <section class="banner-container">
-      <div class="banner">
-        <p>
-          ✨ Big events, bigger savings! Grab our special deals for weddings,
-          birthdays, and more! ✨
-        </p>
-      </div>
+        <div class="banner">
+            <p>✨ Big events, bigger savings! Grab our special deals for weddings, birthdays, and more! ✨</p>
+        </div>
     </section>
 
-    <section class="packages" id="packages">
-      <div class="package-card">
-        <img src="../assets/baptism_package.jpg" alt="Baptismal Package" />
-        <h3>Imperial Package</h3>
-        <button class="btn delete-btn">Delete</button>
-      </div>
-      <div class="package-card">
-        <img src="../assets/debut_package.jpg" alt="Debut Package" />
-        <h3>Debut Package</h3>
-        <button class="btn delete-btn">Delete</button>
-      </div>
-      <div class="package-card">
-        <img
-          src="../assets/birthday_package.jpg"
-          alt="Birthday Party Package"
-        />
-        <h3>Gala Party Package</h3>
-        <button class="btn delete-btn">Delete</button>
-      </div>
-      <div class="package-card">
-        <img src="../assets/kiddie_package.jpg" alt="Kiddie Package" />
-        <h3>Wedding Package</h3>
-        <button class="btn delete-btn">Delete</button>
-      </div>
+    <section class="packages" id="packagesContainer">
+        <div class="package-card" data-package="Baptism Package">
+            <img src="../assets/baptism_package.jpg" alt="Baptismal Package">
+            <h3>Baptism Package</h3>
+            <div class="package-details">
+                <p class="package-price">₱15,000.00</p>
+            </div>
+            <div class="buttons">
+                <button class="btn view-package">View Package</button>
+                <button class="btn edit-btn">Edit</button>
+                <button class="btn delete-btn">Delete</button>
+            </div>
+        </div>
+        <div class="package-card" data-package="Debut Package">
+            <img src="../assets/debut_package.jpg" alt="Debut Package">
+            <h3>Debut Package</h3>
+            <div class="package-details">
+                <p class="package-price">₱25,000.00</p>
+            </div>
+            <div class="buttons">
+                <button class="btn view-package">View Package</button>
+                <button class="btn edit-btn">Edit</button>
+                <button class="btn delete-btn">Delete</button>
+            </div>
+        </div>
+        <div class="package-card" data-package="Wedding Package">
+            <img src="../assets/wedding_package.jpg" alt="Wedding Package">
+            <h3>Wedding Package</h3>
+            <div class="package-details">
+                <p class="package-price">₱50,000.00</p>
+            </div>
+            <div class="buttons">
+                <button class="btn view-package">View Package</button>
+                <button class="btn edit-btn">Edit</button>
+                <button class="btn delete-btn">Delete</button>
+            </div>
+        </div>
+        <div class="package-card" data-package="Kiddie Package">
+            <img src="../assets/debut_package.jpg" alt="Kiddie Package">
+            <h3>Kiddie Package</h3>
+            <div class="package-details">
+                <p class="package-price">₱12,000.00</p>
+            </div>
+            <div class="buttons">
+                <button class="btn view-package">View Package</button>
+                <button class="btn edit-btn">Edit</button>
+                <button class="btn delete-btn">Delete</button>
+            </div>
+        </div>
     </section>
 
-    <div class="add-package-container">
-      <button id="addPackageBtn" class="btn">Add Package</button>
+    <!-- View Package Modal -->
+    <div id="packageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div class="package-info">
+                <p id="modalDescription"></p>
+                <p class="modal-price" id="modalPrice"></p>
+            </div>
+            <div class="modal-images">
+                <img id="modalImg1" src="" alt="Package Image 1">
+                <img id="modalImg2" src="" alt="Package Image 2">
+                <img id="modalImg3" src="" alt="Package Image 3">
+            </div>
+        </div>
     </div>
 
-    <script src="../script/a_homepage.js"></script>
-  </body>
+    <!-- Add New Package Modal -->
+    <div id="addPackageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeAddModal">&times;</span>
+            <h2>Add New Package</h2>
+            <form id="addPackageForm">
+                <div class="form-group">
+                    <label for="packageName">Package Name:</label>
+                    <input type="text" id="packageName" name="packageName" required>
+                </div>
+                <div class="form-group">
+                    <label for="packagePrice">Price:</label>
+                    <input type="number" id="packagePrice" name="packagePrice" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="packageImage">Main Package Image:</label>
+                    <input type="file" id="packageImage" name="packageImage" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <label>Additional Images (Optional):</label>
+                    <input type="file" id="packageImage1" name="packageImage1" accept="image/*">
+                    <input type="file" id="packageImage2" name="packageImage2" accept="image/*">
+                    <input type="file" id="packageImage3" name="packageImage3" accept="image/*">
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="cancel-btn" id="cancelAddPackage">Cancel</button>
+                    <button type="submit" class="save-btn">Add Package</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Package Modal -->
+    <div id="editPackageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeEditModal">&times;</span>
+            <h2>Edit Package</h2>
+            <form id="editPackageForm">
+                <input type="hidden" id="editPackageId" name="editPackageId">
+                <div class="form-group">
+                    <label for="editPackageName">Package Name:</label>
+                    <input type="text" id="editPackageName" name="editPackageName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editPackagePrice">Price:</label>
+                    <input type="number" id="editPackagePrice" name="editPackagePrice" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="editPackageImage">Main Package Image (Leave empty to keep current):</label>
+                    <input type="file" id="editPackageImage" name="editPackageImage" accept="image/*">
+                    <div class="current-image-preview">
+                        <img id="currentMainImage" src="" alt="Current Image" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px; margin-top: 10px;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Additional Images (Leave empty to keep current):</label>
+                    <input type="file" id="editPackageImage1" name="editPackageImage1" accept="image/*">
+                    <input type="file" id="editPackageImage2" name="editPackageImage2" accept="image/*">
+                    <input type="file" id="editPackageImage3" name="editPackageImage3" accept="image/*">
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="cancel-btn" id="cancelEditPackage">Cancel</button>
+                    <button type="submit" class="save-btn">Update Package</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="success-modal">
+        <div class="success-modal-content">
+            <div class="success-icon">✓</div>
+            <div class="success-title">Success!</div>
+            <div class="success-message" id="successMessage">Package added successfully!</div>
+            <button class="success-ok-btn" id="successOkBtn">OK</button>
+        </div>
+    </div>
+
+    <!-- Add New Package Button -->
+    <div class="add-package-container">
+        <button id="addPackageBtn" class="add-package-btn">+ Add New Package</button>
+    </div>
+
+    <script src="../script/a_homepage.js"></script> 
+</body>
 </html>
