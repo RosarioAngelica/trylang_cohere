@@ -101,16 +101,46 @@ nav i {
   background: #007b3d;
   color: white;
   padding: 10px;
+  text-align: left;
 }
 
 .table-data td {
   padding: 8px;
   border: 1px solid #ddd;
   color: #333;
+  vertical-align: middle;
 }
 
 .table-data tbody tr:hover {
   background: #f4f4f4;
+}
+
+/* === Status Dropdown Styling === */
+.status-dropdown {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  min-width: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.status-dropdown:hover {
+  border-color: #007b3d;
+}
+
+.status-dropdown:focus {
+  outline: 2px solid #007b3d;
+  outline-offset: 2px;
+}
+
+/* Status-specific styling will be applied via JavaScript */
+.status-dropdown option {
+  padding: 5px;
+  background: white;
+  color: black;
 }
 
 /* === Buttons === */
@@ -124,6 +154,7 @@ nav i {
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  font-family: inherit;
 }
 
 .reply-btn:hover,
@@ -197,4 +228,32 @@ select:focus {
   .modal {
     width: 90%;
   }
+  
+  .table-data {
+    overflow-x: scroll;
+  }
+  
+  .status-dropdown {
+    min-width: 80px;
+    font-size: 12px;
+  }
+}
+
+/* === Table scroll styling === */
+.table-data::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-data::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.table-data::-webkit-scrollbar-thumb {
+  background: #007b3d;
+  border-radius: 4px;
+}
+
+.table-data::-webkit-scrollbar-thumb:hover {
+  background: #00592a;
 }
