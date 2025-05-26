@@ -25,9 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $admin = $result->fetch_assoc();
 
         if (password_verify($password, $admin['password'])) {
-            $_SESSION["admin_id"] = $admin["id"];
-            $_SESSION["admin_name"] = $admin["f_name"] . " ". $admin["l_name"];
-            $_SESSION["phone"] = $admin["phone"];
+            // Fixed: Use correct column names from database
+            $_SESSION["admin_id"] = $admin["admin_id"];
+            $_SESSION["admin_name"] = $admin["f_name"] . " " . $admin["l_name"];
+            $_SESSION["admin_email"] = $admin["email"];
+            $_SESSION["admin_phone"] = $admin["phone"];
 
             echo "<script>alert('Login successful!'); 
                 window.location.href='a_homepage.html';</script>";
