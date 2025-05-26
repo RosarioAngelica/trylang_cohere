@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <nav class="navbar">
         <ul>
             <li><a href="../pages/a_homepage.html">Home</a></li>
-            <li><a href="../pages/a_inquiries.html">View Inquiries</a></li>
+            <li><a href="../pages/a_inquiries.php">View Inquiries</a></li>
             <li><a href="../pages/a_make_reservation.php" class="active">Make Reservation</a></li>
             <li><a href="../pages/a_view_report.html">View Report</a></li>
             <li><a href="../pages/admin_profile.php">Admin Profile</a></li>
@@ -124,6 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="reservation-container">
         <h2>Let's bring your vision to life—just fill out the form.</h2>
             <form method="POST" action="p_make_reservation.php">
+                <input type="hidden" name="created_by_type" value="admin">
                 <div class="form-group">
                     <label for="name">Name:<span>*</span></label>
                     <input type="text" id="name" name="name" placeholder="First Name, Last Name"required>
