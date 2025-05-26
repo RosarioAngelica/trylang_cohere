@@ -12,6 +12,7 @@ $admin_name = isset($_SESSION["admin_name"]) ? $_SESSION["admin_name"] : "Admin 
 $admin_email = isset($_SESSION["admin_email"]) ? $_SESSION["admin_email"] : "admin@villasalud.com";
 $admin_phone = isset($_SESSION["admin_phone"]) ? $_SESSION["admin_phone"] : "N/A";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +27,7 @@ $admin_phone = isset($_SESSION["admin_phone"]) ? $_SESSION["admin_phone"] : "N/A
   <nav class="navbar">
     <ul>
       <li><a href="../pages/a_homepage.html">Home</a></li>
-      <li><a href="../pages/a_inquiries.php">View Inquiries</a></li>
+      <li><a href="../pages/a_inquiries.html">View Inquiries</a></li>
       <li><a href="../pages/a_make_reservation.php">Make Reservation</a></li>
       <li><a href="../pages/a_view_report.html">View Report</a></li>
       <li><a href="#" class="active">Admin Profile</a></li>
@@ -57,12 +58,48 @@ $admin_phone = isset($_SESSION["admin_phone"]) ? $_SESSION["admin_phone"] : "N/A
       </div>
     </div>
 
-    <div class="admin-activity">
-      <h3>Recent Activities</h3>
-      <ul id="activity-list">
-        <li><span>✔</span> Logged in successfully - <small><?php echo date('M d, Y H:i'); ?></small></li>
-        <li><span>✔</span> System initialized - <small>Just now</small></li>
-      </ul>
+    <div class="admin-history">
+      <div class="history-header">
+        <h3>Admin History</h3>
+        <div class="history-controls">
+          <select id="history-filter" class="filter-select">
+            <option value="all">All Activities</option>
+            <option value="login">Login/Logout</option>
+            <option value="profile">Profile Changes</option>
+            <option value="system">System Actions</option>
+          </select>
+          <button class="clear-history-btn" id="clear-history-btn">Clear History</button>
+        </div>
+      </div>
+      
+      <div class="history-stats">
+        <div class="stat-item">
+          <span class="stat-number" id="total-activities">0</span>
+          <span class="stat-label">Total Activities</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="today-activities">0</span>
+          <span class="stat-label">Today</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="this-week-activities">0</span>
+          <span class="stat-label">This Week</span>
+        </div>
+      </div>
+
+      <div class="history-list-container">
+        <ul id="history-list" class="history-list">
+          <!-- History items will be populated by JavaScript -->
+        </ul>
+        <div id="history-empty" class="history-empty" style="display: none;">
+          <div class="empty-icon">📝</div>
+          <p>No history available</p>
+        </div>
+      </div>
+      
+      <div class="history-pagination">
+        <button id="load-more-btn" class="load-more-btn" style="display: none;">Load More</button>
+      </div>
     </div>
   </section>
 
@@ -129,6 +166,18 @@ $admin_phone = isset($_SESSION["admin_phone"]) ? $_SESSION["admin_phone"] : "N/A
       <div class="success-title">Success!</div>
       <div class="success-message" id="success-message-text">Profile updated successfully!</div>
       <button class="success-ok-btn" id="success-ok-btn">OK</button>
+    </div>
+  </div>
+
+  <!-- Confirm Modal -->
+  <div id="confirm-modal" class="modal">
+    <div class="modal-content">
+      <h3>Confirm Action</h3>
+      <p id="confirm-message">Are you sure you want to proceed?</p>
+      <div class="modal-buttons">
+        <button type="button" class="cancel-btn" id="confirm-cancel">Cancel</button>
+        <button type="button" class="delete-btn" id="confirm-ok">Confirm</button>
+      </div>
     </div>
   </div>
 
