@@ -2,49 +2,67 @@
 session_start();
 include 'db_connect.php';
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+// Function to generate unique log ID
+function generateLogId() {
+    return uniqid('LOG_', true);
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST["email"]);
-    $password = $_POST["password"];
+// Function to log activity
+function logActivity($conn, $admin_id, $activity_type, $description = null, $inquiry_id = null, $reserve_id = null) {
+    $log_id = generateLogId();
+    $ip_address = $_SERVER['REMOTE_ADDR'] ?? null;
+    $user_agent = $_SERVER['HTTP_USER_AGENT'] ?? null;
+    
+    $stmt = $conn->prepare("INSERT INTO activity_log (log_id, admin_id, activity_type, description, inquiry_id, reserve_id, ip_address, user_agent) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sissiiis", $log_id, $admin_id, $activity_type, $description, $inquiry_id, $reserve_id, $ip_address, $user_agent);
+    
+    return $stmt->execute();
+}
 
-    if (empty($email) || empty($password)) {
-        echo "<script>alert('Email and password are required!'); 
-            window.history.back();</script>";
-        exit;
-    }
-
-    $stmt = $conn->prepare("SELECT * FROM admin WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows === 1) {
-        $admin = $result->fetch_assoc();
-
-        if (password_verify($password, $admin['password'])) {
-            // Fixed: Use correct column names from database
-            $_SESSION["admin_id"] = $admin["admin_id"];
-            $_SESSION["admin_name"] = $admin["f_name"] . " " . $admin["l_name"];
-            $_SESSION["admin_email"] = $admin["email"];
-            $_SESSION["admin_phone"] = $admin["phone"];
-
-            echo "<script>alert('Login successful!'); 
-                window.location.href='a_homepage.html';</script>";
+// Handle login form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+    
+    if (!empty($email) && !empty($password)) {
+        // Query to get admin details from your admin table
+        $stmt = $conn->prepare("SELECT admin_id, f_name, l_name, email, password FROM admin WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $admin = $result->fetch_assoc();
+            
+            // Verify password
+            if (password_verify($password, $admin['password'])) {
+                // Create full name from f_name and l_name
+                $admin_full_name = $admin['f_name'] . ' ' . $admin['l_name'];
+                
+                // Set session variables
+                $_SESSION['admin_id'] = $admin['admin_id'];
+                $_SESSION['admin_name'] = $admin_full_name;
+                $_SESSION['admin_email'] = $admin['email'];
+                $_SESSION['login_time'] = time();
+                
+                // Log successful login
+                logActivity($conn, $admin['admin_id'], 'login', "Admin '{$admin_full_name}' logged in successfully");
+                
+                // Redirect to dashboard
+                header("Location: a_homepage.html");
+                exit;
+            } else {
+                $error_message = "Invalid email or password.";
+            }
         } else {
-            echo "<script>alert('Incorrect password!'); 
-                window.history.back();</script>";
+            $error_message = "Invalid email or password.";
         }
+        $stmt->close();
     } else {
-        echo "<script>alert('No account found with this email!'); 
-            window.history.back();</script>";
+        $error_message = "Please fill in all fields.";
     }
-
-    $stmt->close();
-    $conn->close();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -65,6 +83,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p>Your Event, Your Way - Log In to Start!</p>
             <div class="login-box">
                 <h2>Log In</h2>
+                
+                <?php if (isset($error_message)): ?>
+                    <div class="error-message" style="color: #dc3545; background: #f8d7da; border: 1px solid #f5c6cb; padding: 10px; margin-bottom: 15px; border-radius: 4px;">
+                        <?php echo htmlspecialchars($error_message); ?>
+                    </div>
+                <?php endif; ?>
+                
                 <form id="login-form" action="login.php" method="POST">
                     <label>Email Address:</label>
                     <input type="email" name="email" required>
