@@ -47,7 +47,7 @@ if ($result && $result->num_rows > 0) {
             <li><a href="../pages/a_homepage.html">Home</a></li>
             <li><a href="a_inquiries.php" class="active">View Inquiries</a></li>
             <li><a href="../pages/a_make_reservation.php">Make Reservation</a></li>
-            <li><a href="../pages/a_view_report.html">View Report</a></li>
+            <li><a href="../pages/a_view_report.php">View Report</a></li>
             <li><a href="../pages/admin_profile.php">Admin Profile</a></li>
         </ul>
     </nav>

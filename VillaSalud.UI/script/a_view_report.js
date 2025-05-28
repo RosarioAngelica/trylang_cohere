@@ -1,36 +1,89 @@
-// Load Report Data
+// Handle reservation filter change (placeholder behavior)
+document.getElementById("reservation-filter").addEventListener("change", function () {
+    const placeholder = document.querySelector(".reservation-placeholder");
+    placeholder.innerHTML = `Loading total for: ${this.options[this.selectedIndex].text}`;
+    setTimeout(() => {
+        // Placeholder total update
+        document.getElementById("total-reservations").textContent = 0;
+        placeholder.innerHTML = "No data yet — chart coming soon.";
+    }, 500);
+});
+
 document.addEventListener("DOMContentLoaded", function () {
-    const reportTable = document.getElementById("reportTable");
+    const inquiryCount = document.getElementById("total-inquiries");
+    const inquiryFilter = document.getElementById("inquiry-filter");
+    const canvas = document.getElementById("inquiry-sparkline");
+    const sparklineCtx = canvas.getContext("2d");
 
-    // Sample Data (Replace with real data later)
-    const reports = [
-        { name: "John Doe", email: "john@example.com", type: "Inquiry", date: "2025-03-22" },
-        { name: "Jane Smith", email: "jane@example.com", type: "Booking", date: "2025-03-21" },
-        { name: "Michael Lee", email: "michael@example.com", type: "Inquiry", date: "2025-03-20" }
-    ];
+    let sparklineChart;
 
-    function loadReports() {
-        reportTable.innerHTML = ""; // Clear previous data
+    function fetchInquiryData(timeRange) {
+        fetch("fetch_inquiry_data.php?filter=" + timeRange)
+            .then(res => res.json())
+            .then(data => {
+                inquiryCount.textContent = data.total;
 
-        reports.forEach(report => {
-            const row = document.createElement("tr");
+                if (sparklineChart) sparklineChart.destroy();
 
-            row.innerHTML = `
-                <td>${report.name}</td>
-                <td>${report.email}</td>
-                <td>${report.type}</td>
-                <td>${report.date}</td>
-            `;
+                // ✨ Set canvas resolution for sharp rendering
+                const dpr = window.devicePixelRatio || 1;
+                canvas.width = canvas.clientWidth * dpr;
+                canvas.height = canvas.clientHeight * dpr;
+                sparklineCtx.setTransform(1, 0, 0, 1, 0, 0); // reset any scaling
+                sparklineCtx.scale(dpr, dpr);
 
-            reportTable.appendChild(row);
-        });
-
-        // Update statistics cards
-        document.getElementById("total-inquiries").textContent = reports.filter(r => r.type === "Inquiry").length;
-        document.getElementById("total-bookings").textContent = reports.filter(r => r.type === "Booking").length;
-        document.getElementById("popular-theme").textContent = "Rustic Elegance"; // Placeholder
+                // ✨ Render sharp graph
+                sparklineChart = new Chart(sparklineCtx, {
+                    type: "line",
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: "Inquiries",
+                            data: data.counts,
+                            fill: false,
+                            borderColor: "#007b3d",
+                            tension: 0.3,
+                            pointRadius: 3
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: {
+                                display: true,
+                                ticks: {
+                                    color: "#333",
+                                    font: { size: 12 }
+                                },
+                                grid: { display: false }
+                            },
+                            y: {
+                                display: true,
+                                beginAtZero: true,
+                                ticks: {
+                                    color: "#333",
+                                    font: { size: 12 }
+                                },
+                                grid: { color: "#eee" }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(err => {
+                console.error("Failed to load inquiry data:", err);
+            });
     }
 
-    // Load reports on page load
-    loadReports();
+    // Initial load
+    fetchInquiryData(inquiryFilter.value);
+
+    // Handle filter change
+    inquiryFilter.addEventListener("change", () => {
+        fetchInquiryData(inquiryFilter.value);
+    });
 });

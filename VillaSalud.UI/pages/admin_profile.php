@@ -29,7 +29,7 @@ $admin_phone = isset($_SESSION["admin_phone"]) ? $_SESSION["admin_phone"] : "N/A
       <li><a href="../pages/a_homepage.html">Home</a></li>
       <li><a href="../pages/a_inquiries.php">View Inquiries</a></li>
       <li><a href="../pages/a_make_reservation.php">Make Reservation</a></li>
-      <li><a href="../pages/a_view_report.html">View Report</a></li>
+      <li><a href="../pages/a_view_report.php">View Report</a></li>
       <li><a href="#" class="active">Admin Profile</a></li>
     </ul>
   </nav>
