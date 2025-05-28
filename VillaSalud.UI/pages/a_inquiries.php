@@ -1,11 +1,11 @@
 <?php
 include 'db_connect.php';
 
-// ✅ Corrected SQL: removed trailing comma and added status
 $sqli = "SELECT 
             p.name AS full_name,
             p.email,
             p.contact_number,
+            i.inquiry_id,
             i.time,
             i.date,
             i.venue,
@@ -31,12 +31,14 @@ if ($result && $result->num_rows > 0) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>View Inquiries - Villa Salud</title>
     <link rel="stylesheet" href="../style/a_inquiries.css">
 </head>
+
 <body>
     <header class="header-image"></header>
 
@@ -88,7 +90,7 @@ if ($result && $result->num_rows > 0) {
                         </thead>
                         <tbody>
                             <?php foreach ($inquiries as $index => $inquiry): ?>
-                                <tr>
+                                <tr data-inquiry-id="<?= $inquiry['inquiry_id'] ?>">
                                     <td><?= htmlspecialchars($inquiry['full_name']) ?></td>
                                     <td><?= htmlspecialchars($inquiry['email']) ?></td>
                                     <td><?= htmlspecialchars($inquiry['contact_number']) ?></td>
@@ -104,7 +106,8 @@ if ($result && $result->num_rows > 0) {
                                         <select class="status-dropdown" data-index="<?= $index ?>">
                                             <option value="" <?= empty($inquiry['status']) ? 'selected hidden' : 'hidden' ?>>Set Status</option>
                                             <option value="Pending" <?= $inquiry['status'] === 'Pending' ? 'selected' : '' ?>>Pending</option>
-                                            <option value="Reserved" <?= $inquiry['status'] === 'Reserved' ? 'selected' : '' ?>>Reserved</option>
+                                            <option value="In Progress" <?= $inquiry['status'] === 'In Progress' ? 'selected' : '' ?>>In Progress</option>
+                                            <option value="Completed" <?= $inquiry['status'] === 'Completed' ? 'selected' : '' ?>>Completed</option>
                                             <option value="Cancelled" <?= $inquiry['status'] === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
                                         </select>
                                     </td>
@@ -124,9 +127,8 @@ if ($result && $result->num_rows > 0) {
             <h2>Set Inquiry Status</h2>
             <select id="statusSelect">
                 <option value="Pending">Pending</option>
-                <option value="Reviewed">Reviewed</option>
-                <option value="Confirmed">Confirmed</option>
-                <option value="Rejected">Rejected</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
                 <option value="Cancelled">Cancelled</option>
             </select>
             <button id="saveStatusBtn">Save</button>
@@ -136,4 +138,5 @@ if ($result && $result->num_rows > 0) {
 
     <script src="../script/a_inquiries.js"></script>
 </body>
+
 </html>
