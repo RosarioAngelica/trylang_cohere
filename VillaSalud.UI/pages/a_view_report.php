@@ -27,11 +27,13 @@ include 'db_connect.php';
 
     <section id="content">
         <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>Reports Overview</h1>
-                    <p>Track inquiries, bookings, and trends.</p>
+                <div class="head-title">
+                    <div class="left">
+                        <h1>Reports Overview</h1>
+                        <p>Track inquiries, bookings, and trends.</p>
+                    </div>
                 </div>
+
             </div>
 
             <!-- Summary Cards -->
@@ -76,6 +78,26 @@ include 'db_connect.php';
                     </span>
                 </li>
 
+                <li class="theme-card-full">
+                    <i class='bx bxs-palette'></i>
+                    <span class="text">
+                        <h3>Most Popular Theme</h3>
+                        <p>Based on selected time period</p>
+
+                        <div class="theme-extra">
+                            <label for="theme-filter">Filter:</label>
+                            <select id="theme-filter">
+                                <option value="day">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month" selected>This Month</option>
+                                <option value="year">This Year</option>
+                            </select>
+                            <canvas id="theme-barchart" height="260"></canvas>
+                        </div>
+                    </span>
+                </li>
+
+
             </ul>
 
 
@@ -83,22 +105,15 @@ include 'db_connect.php';
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3>Recent Inquiries & Bookings</h3>
-                        <i class='bx bx-filter'></i>
+                        <h3>Activity Feed</h3>
+                        <i class='bx bx-history'></i>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Type</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody id="reportTable"></tbody>
-                    </table>
+                    <div class="feed-body" id="activity-log">
+                        <p>Loading activity...</p>
+                    </div>
                 </div>
             </div>
+
         </main>
     </section>
 

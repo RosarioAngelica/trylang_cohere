@@ -217,3 +217,36 @@ select:focus {
   color: #999;
   font-style: italic;
 }
+
+
+.activity-feed {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 30px 0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.feed-header h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.feed-body {
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.activity-item {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+.activity-item .timestamp {
+  display: block;
+  color: #999;
+  font-size: 12px;
+  margin-top: 5px;
+}
