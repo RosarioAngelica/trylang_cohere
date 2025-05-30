@@ -27,12 +27,12 @@ include 'db_connect.php';
 
     <section id="content">
         <main>
-                <div class="head-title">
-                    <div class="left">
-                        <h1>Reports Overview</h1>
-                        <p>Track inquiries, bookings, and trends.</p>
-                    </div>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Reports Overview</h1>
+                    <p>Track inquiries, bookings, and trends.</p>
                 </div>
+            </div>
 
             </div>
 
@@ -73,7 +73,7 @@ include 'db_connect.php';
                                 <option value="year">This Year</option>
                             </select>
                             <!-- Placeholder space for future graph -->
-                            <div class="reservation-placeholder"></div>
+                            <canvas id="reservation-chart" height="260"></canvas>
                         </div>
                     </span>
                 </li>
@@ -96,6 +96,26 @@ include 'db_connect.php';
                         </div>
                     </span>
                 </li>
+
+                <li class="inquiry-chart-card">
+                    <i class='bx bxs-bar-chart-alt-2'></i>
+                    <span class="text">
+                        <h3>Inquiry Breakdown</h3>
+                        <p>By category or type</p>
+
+                        <div class="inquiry-chart-extra">
+                            <label for="inquiry-type-chart-filter">Filter:</label>
+                            <select id="inquiry-type-chart-filter">
+                                <option value="day">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month" selected>This Month</option>
+                                <option value="year">This Year</option>
+                            </select>
+                            <canvas id="inquiry-type-chart" height="260"></canvas>
+                        </div>
+                    </span>
+                </li>
+
 
 
             </ul>

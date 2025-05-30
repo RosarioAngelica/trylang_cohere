@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function initializeHistory() {
     try {
       const res = await fetch(
-        `../api/get_admin_activity.php?type=${currentFilter}`
+        `../pages/get_admin_activity.php?type=${currentFilter}`
       );
       const data = await res.json();
 

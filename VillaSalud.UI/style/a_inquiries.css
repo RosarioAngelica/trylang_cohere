@@ -257,3 +257,41 @@ select:focus {
 .table-data::-webkit-scrollbar-thumb:hover {
   background: #00592a;
 }
+
+/* Common style for both buttons (optional but neat) */
+.reply-btn,
+.undo-btn {
+  display: inline-block;
+  margin: 2px 2px;
+  padding: 5px 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Specific colors for each button */
+.reply-btn {
+  background-color: #007a3d; /* Dark green */
+  color: white;
+}
+
+.reply-btn:hover {
+  background-color: #005f2e;
+}
+
+.undo-btn {
+  background-color: #dc3545; /* Bootstrap red */
+  color: white;
+}
+
+.undo-btn:hover {
+  background-color: #c82333;
+}
+
+/* Make buttons container inline */
+td button {
+  vertical-align: middle;
+}
+
