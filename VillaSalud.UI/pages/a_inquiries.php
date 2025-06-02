@@ -111,7 +111,13 @@ if ($result && $result->num_rows > 0) {
                                             <option value="Cancelled" <?= $inquiry['status'] === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
                                         </select>
                                     </td>
-                                    <td><button class="reply-btn" data-index="<?= $index ?>">Reply</button></td>
+                                    <td>
+                                        <button class="reply-btn" data-index="<?= $index ?>">Reply</button>
+                                        <?php if ($inquiry['status'] === 'Completed'): ?>
+                                            <button class="undo-btn" data-inquiry-id="<?= $inquiry['inquiry_id'] ?>">Undo</button>
+                                        <?php endif; ?>
+                                    </td>
+
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

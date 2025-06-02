@@ -36,14 +36,58 @@ if (isset($data['inquiry_id'], $data['status'])) {
         echo json_encode(['success' => false, 'message' => 'Update failed: ' . $stmt->error]);
         exit;
     }
+    $stmt->close();
 
     // Log the status change
     $activity_type = 'update_status';
     $description = "Admin '{$admin_name}' changed inquiry #{$inquiry_id} status to '{$new_status}'";
+    logActivity($conn, $admin_id, $activity_type, $description, $inquiry_id);
 
-    if (!logActivity($conn, $admin_id, $activity_type, $description, $inquiry_id)) {
-        echo json_encode(['success' => false, 'message' => 'Status updated but log failed.']);
-        exit;
+    // If status is 'Completed', insert into reservation
+    if ($new_status === 'Completed') {
+        // Fetch needed fields from inquiry
+        $stmt = $conn->prepare("SELECT patron_id, date, time, message, venue, event_type, theme_motif FROM inquiry WHERE inquiry_id = ?");
+        $stmt->bind_param("i", $inquiry_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $inquiry = $result->fetch_assoc();
+        $stmt->close();
+
+        if ($inquiry) {
+            // Insert into reservation
+            $stmt = $conn->prepare("
+                INSERT INTO reservation (
+                    inquiry_id, patron_id, admin_id, status, date, time, message, venue, event_type, theme_motif
+                ) VALUES (?, ?, ?, 'active', ?, ?, ?, ?, ?, ?)
+            ");
+            $stmt->bind_param(
+                "iiissssss",
+                $inquiry_id,
+                $inquiry['patron_id'],
+                $admin_id,
+                $inquiry['date'],
+                $inquiry['time'],
+                $inquiry['message'],
+                $inquiry['venue'],
+                $inquiry['event_type'],
+                $inquiry['theme_motif']
+            );
+
+            if ($stmt->execute()) {
+                $reserve_id = $stmt->insert_id;
+                $stmt->close();
+
+                // Log reservation creation
+                $resv_description = "Reservation created for inquiry #{$inquiry_id} by '{$admin_name}'";
+                logActivity($conn, $admin_id, 'create_reservation', $resv_description, $inquiry_id, $reserve_id);
+
+                echo json_encode(['success' => true]);
+                exit;
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Reservation insert failed: ' . $stmt->error]);
+                exit;
+            }
+        }
     }
 
     echo json_encode(['success' => true]);

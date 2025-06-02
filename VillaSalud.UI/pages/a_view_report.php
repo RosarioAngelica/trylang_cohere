@@ -34,6 +34,8 @@ include 'db_connect.php';
                 </div>
             </div>
 
+            </div>
+
             <!-- Summary Cards -->
             <ul class="box-info">
                 <!-- ✅ Total Inquiries with filter + sparkline -->
@@ -71,10 +73,50 @@ include 'db_connect.php';
                                 <option value="year">This Year</option>
                             </select>
                             <!-- Placeholder space for future graph -->
-                            <div class="reservation-placeholder"></div>
+                            <canvas id="reservation-chart" height="260"></canvas>
                         </div>
                     </span>
                 </li>
+
+                <li class="theme-card-full">
+                    <i class='bx bxs-palette'></i>
+                    <span class="text">
+                        <h3>Most Popular Theme</h3>
+                        <p>Based on selected time period</p>
+
+                        <div class="theme-extra">
+                            <label for="theme-filter">Filter:</label>
+                            <select id="theme-filter">
+                                <option value="day">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month" selected>This Month</option>
+                                <option value="year">This Year</option>
+                            </select>
+                            <canvas id="theme-barchart" height="260"></canvas>
+                        </div>
+                    </span>
+                </li>
+
+                <li class="inquiry-chart-card">
+                    <i class='bx bxs-bar-chart-alt-2'></i>
+                    <span class="text">
+                        <h3>Inquiry Breakdown</h3>
+                        <p>By category or type</p>
+
+                        <div class="inquiry-chart-extra">
+                            <label for="inquiry-type-chart-filter">Filter:</label>
+                            <select id="inquiry-type-chart-filter">
+                                <option value="day">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month" selected>This Month</option>
+                                <option value="year">This Year</option>
+                            </select>
+                            <canvas id="inquiry-type-chart" height="260"></canvas>
+                        </div>
+                    </span>
+                </li>
+
+
 
             </ul>
 
@@ -83,22 +125,15 @@ include 'db_connect.php';
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3>Recent Inquiries & Bookings</h3>
-                        <i class='bx bx-filter'></i>
+                        <h3>Activity Feed</h3>
+                        <i class='bx bx-history'></i>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Type</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody id="reportTable"></tbody>
-                    </table>
+                    <div class="feed-body" id="activity-log">
+                        <p>Loading activity...</p>
+                    </div>
                 </div>
             </div>
+
         </main>
     </section>
 
