@@ -7,12 +7,22 @@ include 'db_connect.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Reports - Villa Salud</title>
+    <title>Analytics Dashboard - Villa Salud</title>
     <link rel="stylesheet" href="../style/a_view_report.css">
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 </head>
 
 <body>
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading Dashboard...</p>
+        </div>
+    </div>
+
     <header class="header-image"></header>
 
     <nav class="navbar">
@@ -27,109 +37,241 @@ include 'db_connect.php';
 
     <section id="content">
         <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>Reports Overview</h1>
-                    <p>Track inquiries, bookings, and trends.</p>
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <div class="header-content">
+                    <div class="header-text">
+                        <h1>Report Dashboard</h1>
+                    </div>
+                    <div class="header-actions">
+                        <button class="refresh-btn" onclick="refreshDashboard()">
+                            <i class='bx bx-refresh'></i>
+                            Refresh Data
+                        </button>
+                        <div class="last-updated">
+                            <span>Last updated: <span id="last-updated-time">--</span></span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- Key Metrics Overview -->
+            <div class="metrics-overview">
+                <div class="metric-card primary">
+                    <div class="metric-icon">
+                        <i class='bx bxs-message-dots'></i>
+                    </div>
+                    <div class="metric-content">
+                        <div class="metric-value" id="total-inquiries-overview">0</div>
+                        <div class="metric-label">Total Inquiries</div>
+                        <div class="metric-change positive" id="inquiry-change">
+                            <i class='bx bx-trending-up'></i>
+                            <span>+12% vs last period</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card secondary">
+                    <div class="metric-icon">
+                        <i class='bx bxs-calendar-check'></i>
+                    </div>
+                    <div class="metric-content">
+                        <div class="metric-value" id="total-reservations-overview">0</div>
+                        <div class="metric-label">Total Reservations</div>
+                        <div class="metric-change positive" id="reservation-change">
+                            <i class='bx bx-trending-up'></i>
+                            <span>+8% vs last period</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card accent">
+                    <div class="metric-icon">
+                        <i class='bx bxs-star'></i>
+                    </div>
+                    <div class="metric-content">
+                        <div class="metric-value" id="conversion-rate">0%</div>
+                        <div class="metric-label">Conversion Rate</div>
+                        <div class="metric-change neutral" id="conversion-change">
+                            <i class='bx bx-minus'></i>
+                            <span>No change</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card warning">
+                    <div class="metric-icon">
+                        <i class='bx bxs-time'></i>
+                    </div>
+                    <div class="metric-content">
+                        <div class="metric-value" id="avg-response-time">0h</div>
+                        <div class="metric-label">Avg Response Time</div>
+                        <div class="metric-change negative" id="response-change">
+                            <i class='bx bx-trending-down'></i>
+                            <span>-15% improvement</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Summary Cards -->
-            <ul class="box-info">
-                <!-- ✅ Total Inquiries with filter + sparkline -->
-                <li class="inquiry-card-full">
-                    <i class='bx bxs-calendar-check'></i>
-                    <span class="text">
-                        <h3 id="total-inquiries">0</h3>
-                        <p>Total Inquiries</p>
-
-                        <div class="inquiry-extra">
-                            <label for="inquiry-filter">Filter:</label>
-                            <select id="inquiry-filter">
-                                <option value="day">Today</option>
-                                <option value="week">This Week</option>
-                                <option value="month" selected>This Month</option>
-                                <option value="year">This Year</option>
-                            </select>
-                            <canvas id="inquiry-sparkline" height="180"></canvas>
+            <!-- Chart Panels -->
+            <div class="chart-grid">
+                <!-- Inquiries Trend Chart -->
+                <div class="chart-panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <h3>Inquiries Trend</h3>
+                            <p>Track inquiry patterns over time</p>
                         </div>
-                    </span>
-                </li>
-
-                <li class="reservation-card-full">
-                    <i class='bx bxs-group'></i>
-                    <span class="text">
-                        <h3 id="total-reservations">0</h3>
-                        <p>Total Reservations</p>
-
-                        <div class="reservation-extra">
-                            <label for="reservation-filter">Filter:</label>
-                            <select id="reservation-filter">
-                                <option value="day">Today</option>
-                                <option value="week">This Week</option>
-                                <option value="month" selected>This Month</option>
-                                <option value="year">This Year</option>
+                        <div class="panel-controls">
+                            <select id="inquiry-filter" class="filter-select">
+                                <option value="day">Last 7 Days</option>
+                                <option value="week">Last 4 Weeks</option>
+                                <option value="month" selected>Last 6 Months</option>
+                                <option value="year">Last 2 Years</option>
                             </select>
-                            <!-- Placeholder space for future graph -->
-                            <canvas id="reservation-chart" height="260"></canvas>
                         </div>
-                    </span>
-                </li>
-
-                <li class="theme-card-full">
-                    <i class='bx bxs-palette'></i>
-                    <span class="text">
-                        <h3>Most Popular Theme</h3>
-                        <p>Based on selected time period</p>
-
-                        <div class="theme-extra">
-                            <label for="theme-filter">Filter:</label>
-                            <select id="theme-filter">
-                                <option value="day">Today</option>
-                                <option value="week">This Week</option>
-                                <option value="month" selected>This Month</option>
-                                <option value="year">This Year</option>
-                            </select>
-                            <canvas id="theme-barchart" height="260"></canvas>
-                        </div>
-                    </span>
-                </li>
-
-                <li class="inquiry-chart-card">
-                    <i class='bx bxs-bar-chart-alt-2'></i>
-                    <span class="text">
-                        <h3>Inquiry Breakdown</h3>
-                        <p>By category or type</p>
-
-                        <div class="inquiry-chart-extra">
-                            <label for="inquiry-type-chart-filter">Filter:</label>
-                            <select id="inquiry-type-chart-filter">
-                                <option value="day">Today</option>
-                                <option value="week">This Week</option>
-                                <option value="month" selected>This Month</option>
-                                <option value="year">This Year</option>
-                            </select>
-                            <canvas id="inquiry-type-chart" height="260"></canvas>
-                        </div>
-                    </span>
-                </li>
-
-
-
-            </ul>
-
-
-            <!-- Placeholder for Activity Log / Other -->
-            <div class="table-data">
-                <div class="order">
-                    <div class="head">
-                        <h3>Activity Feed</h3>
-                        <i class='bx bx-history'></i>
                     </div>
-                    <div class="feed-body" id="activity-log">
-                        <p>Loading activity...</p>
+                    <div class="chart-container">
+                        <canvas id="inquiry-sparkline"></canvas>
+                    </div>
+                    <div class="chart-footer">
+                        <div class="chart-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Peak Day:</span>
+                                <span class="stat-value" id="inquiry-peak-day">Monday</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Average Daily:</span>
+                                <span class="stat-value" id="inquiry-avg-daily">12</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reservations Chart -->
+                <div class="chart-panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <h3>Reservation Analytics</h3>
+                            <p>Monitor booking performance</p>
+                        </div>
+                        <div class="panel-controls">
+                            <select id="reservation-filter" class="filter-select">
+                                <option value="day">Last 7 Days</option>
+                                <option value="week">Last 4 Weeks</option>
+                                <option value="month" selected>Last 6 Months</option>
+                                <option value="year">Last 2 Years</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="reservation-chart"></canvas>
+                    </div>
+                    <div class="chart-footer">
+                        <div class="chart-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Best Month:</span>
+                                <span class="stat-value" id="reservation-best-month">December</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Growth Rate:</span>
+                                <span class="stat-value positive" id="reservation-growth">+15%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme Popularity Chart -->
+                <div class="chart-panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <h3>Theme Popularity</h3>
+                            <p>Most requested themes and packages</p>
+                        </div>
+                        <div class="panel-controls">
+                            <select id="theme-filter" class="filter-select">
+                                <option value="day">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month" selected>This Month</option>
+                                <option value="year">This Year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="theme-barchart"></canvas>
+                    </div>
+                    <div class="chart-footer">
+                        <div class="chart-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Most Popular:</span>
+                                <span class="stat-value" id="most-popular-theme">Garden Party</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Total Themes:</span>
+                                <span class="stat-value" id="total-themes">8</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inquiry Categories Chart -->
+                <div class="chart-panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <h3>Inquiry Categories</h3>
+                            <p>Breakdown by inquiry type</p>
+                        </div>
+                        <div class="panel-controls">
+                            <select id="inquiry-type-chart-filter" class="filter-select">
+                                <option value="day">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month" selected>This Month</option>
+                                <option value="year">This Year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="inquiry-type-chart"></canvas>
+                    </div>
+                    <div class="chart-footer">
+                        <div class="chart-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Top Category:</span>
+                                <span class="stat-value" id="top-inquiry-category">General Info</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Response Rate:</span>
+                                <span class="stat-value positive" id="inquiry-response-rate">94%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Feed Section -->
+            <div class="activity-section">
+                <div class="activity-panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <h3>Recent Activity</h3>
+                            <p>Latest administrative actions and system events</p>
+                        </div>
+                        <div class="panel-controls">
+                            <button class="icon-btn" onclick="loadActivityLog()" title="Refresh Activity">
+                                <i class='bx bx-refresh'></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="activity-content" id="activity-log">
+                        <div class="activity-loading">
+                            <div class="loading-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <p>Loading recent activity...</p>
+                        </div>
                     </div>
                 </div>
             </div>
