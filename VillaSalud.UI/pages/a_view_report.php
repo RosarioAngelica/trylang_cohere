@@ -279,6 +279,10 @@ include 'db_connect.php';
         </main>
     </section>
 
+    <!-- Fix: Hidden elements to match JS expectations -->
+    <span id="total-inquiries" style="display:none;"></span>
+    <span id="total-reservations" style="display:none;"></span>
+
     <script src="../script/a_view_report.js"></script>
 </body>
 

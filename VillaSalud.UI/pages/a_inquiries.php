@@ -18,7 +18,7 @@ $sqli = "SELECT
             i.created_by_type
         FROM inquiry i
         LEFT JOIN patron p ON i.patron_id = p.patron_id
-        ORDER BY i.date DESC, i.time DESC";
+        ORDER BY i.inquiry_id DESC";
 
 $result = $conn->query($sqli);
 $inquiries = [];
