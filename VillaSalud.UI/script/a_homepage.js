@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Package data simulation (could be fetched from server)
   const packagesData = {
     "Baptism Package": {
       description: "Celebrate your little one's special day with our Baptism package.",
-      price: "₱5000",
       images: [
         "../assets/baptismal1.jpg",
         "../assets/baptismal2.jpg",
@@ -12,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     "Debut Package": {
       description: "Make the debut unforgettable with our complete Debut package.",
-      price: "₱10000",
       images: [
         "../assets/debut1.jpg",
         "../assets/debut2.jpg",
@@ -21,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     "Wedding Package": {
       description: "A perfect wedding package for your dream day.",
-      price: "₱25000",
       images: [
         "../assets/wedding1.jpg",
         "../assets/wedding2.jpg",
@@ -30,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     "Kiddie Package": {
       description: "Fun and exciting package for kids' parties.",
-      price: "₱7000",
       images: [
         "../assets/kiddie1.jpg",
         "../assets/kiddie2.jpg",
@@ -43,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const packageModal = document.getElementById("packageModal");
   const modalTitle = document.getElementById("modalTitle");
   const modalDescription = document.getElementById("modalDescription");
-  const modalPrice = document.getElementById("modalPrice");
   const modalImg1 = document.getElementById("modalImg1");
   const modalImg2 = document.getElementById("modalImg2");
   const modalImg3 = document.getElementById("modalImg3");
@@ -66,17 +60,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const addPackageForm = document.getElementById("addPackageForm");
   const editPackageForm = document.getElementById("editPackageForm");
 
-  // Helper to open modal
   function openModal(modal) {
     modal.style.display = "flex";
   }
 
-  // Helper to close modal
   function closeModal(modal) {
     modal.style.display = "none";
   }
 
-  // View Package modal handlers
+  // View Package
   document.querySelectorAll(".view-package").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const packageCard = e.target.closest(".package-card");
@@ -86,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       modalTitle.textContent = packageName;
       modalDescription.textContent = data.description;
-      modalPrice.textContent = data.price;
 
       modalImg1.src = data.images[0] || "";
       modalImg2.src = data.images[1] || "";
@@ -96,13 +87,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Close View Package modal on clicking X or outside
   packageModal.querySelector(".close").addEventListener("click", () => closeModal(packageModal));
   packageModal.addEventListener("click", (e) => {
     if (e.target === packageModal) closeModal(packageModal);
   });
 
-  // Open Add Package Modal
+  // Add Package
   addPackageBtn.addEventListener("click", () => openModal(addPackageModal));
   closeAddModal.addEventListener("click", () => closeModal(addPackageModal));
   cancelAddPackage.addEventListener("click", () => closeModal(addPackageModal));
@@ -110,21 +100,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === addPackageModal) closeModal(addPackageModal);
   });
 
-  // Handle Add Package form submission
   addPackageForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
-    // Just simulate adding package here
     closeModal(addPackageModal);
-
     successMessage.textContent = "Package added successfully!";
     openModal(successModal);
-
-    // Clear form inputs (optional)
     addPackageForm.reset();
   });
 
-  // Open Edit Package Modal
+  // Edit Package
   document.querySelectorAll(".edit-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const packageCard = e.target.closest(".package-card");
@@ -134,12 +118,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       document.getElementById("editPackageId").value = packageName;
       document.getElementById("editPackageName").value = packageName;
-      // Strip ₱ sign and convert price to number
-      document.getElementById("editPackagePrice").value = parseFloat(data.price.replace(/[^\d.]/g, ""));
 
       document.getElementById("currentMainImage").src = data.images[0] || "";
 
-      // Clear file inputs
       ["editPackageImage", "editPackageImage1", "editPackageImage2", "editPackageImage3"].forEach(id => {
         document.getElementById(id).value = "";
       });
@@ -154,18 +135,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === editPackageModal) closeModal(editPackageModal);
   });
 
-  // Handle Edit Package form submission
   editPackageForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
-    // For now just simulate update success
     closeModal(editPackageModal);
-
     successMessage.textContent = "Package updated successfully!";
     openModal(successModal);
   });
 
-  // Delete package handler
+  // Delete
   document.querySelectorAll(".delete-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const packageCard = e.target.closest(".package-card");
@@ -176,12 +153,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Success modal OK button
   successOkBtn.addEventListener("click", () => {
     closeModal(successModal);
   });
 
-  // Optional: close success modal on clicking outside
   successModal.addEventListener("click", (e) => {
     if (e.target === successModal) closeModal(successModal);
   });
