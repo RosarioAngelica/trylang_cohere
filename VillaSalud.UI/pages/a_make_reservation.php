@@ -188,8 +188,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h3>Select Status</h3>
                 <select id="statusSelect">
                     <option value="free">Free (Green)</option>
-                    <option value="full">Fully Booked (Yellow)</option>
-                    <option value="closed">Closed (Red)</option>
+                    <option value="full">Fully Booked (Red)</option>
+                    <option value="reserved">Reserved (Yellow)</option>
+                    <option value="pending confirmation">Pending (Blue)</option>
+                    <option value="closed">Closed (Black)</option>
                 </select>
                 <button id="saveStatus">Save</button>
                 <button id="closeModal">Cancel</button>

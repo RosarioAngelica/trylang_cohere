@@ -135,12 +135,18 @@ document.addEventListener("DOMContentLoaded", function () {
         if (status === "free") {
             cell.style.background = "green";
             cell.style.color = "white";
-        } else if (status === "closed") {
-            cell.style.background = "red";
+        } else if (status === "unavailable") {
+            cell.style.background = "gray";
             cell.style.color = "white";
         } else if (status === "full") {
-            cell.style.background = "yellow";
+            cell.style.background = "red";
             cell.style.color = "black";
+        } else if (status === "pending confirmation") {
+            cell.style.background = "blue";
+            cell.style.color = "white";
+        } else if (status === "reserved") {
+            cell.style.background = "yellow";
+            cell.style.color = "white";
         }
     }
 
