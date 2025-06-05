@@ -15,51 +15,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = $_POST['message'];
     $date = $_POST['date'];
     $time = $_POST['time'];
+    $createdByType = "admin";
+    $defaultStatus = "Pending";
 
-    // Validate venue against allowed ENUM values
+    // VALIDATIONS
     $allowedVenues = ['Villa I', 'Villa II', 'Elizabeth Hall', 'Private Pool'];
-    
+    $allowedEventTypes = ['Baptismal Package', 'Birthday Package', 'Debut Package', 'Kiddie Package', 'Wedding Package', 'Standard Package'];
+    $allowedThemeMotifs = ['Floral', 'Rustic', 'Elegant', 'Beach', 'Modern'];
+
     if ($venue === 'Others') {
-        // If 'Others' is selected, check if other_venue is provided
-        if (empty($otherVenue)) {
-            die("Please specify the venue in the 'Other Venue' field.");
-        }
-        // If other_venue is provided, use the first allowed venue as a placeholder
+        if (empty($otherVenue)) die("Please specify the venue in the 'Other Venue' field.");
         $venue = $allowedVenues[0];
     } else {
-        // Validate that the selected venue is in the allowed list
-        if (!in_array($venue, $allowedVenues)) {
-            die("Invalid venue selection.");
-        }
+        if (!in_array($venue, $allowedVenues)) die("Invalid venue selection.");
     }
 
-    // Similar handling for event type and theme motif
-    $allowedEventTypes = ['Baptismal Package', 'Birthday Package', 'Debut Package', 'Kiddie Package', 'Wedding Package', 'Standard Package'];
-    
     if ($eventType === 'Others') {
-        if (empty($otherEventType)) {
-            die("Please specify the event type in the 'Other Event Type' field.");
-        }
+        if (empty($otherEventType)) die("Please specify the event type.");
         $eventType = $allowedEventTypes[0];
     } else {
-        if (!in_array($eventType, $allowedEventTypes)) {
-            die("Invalid event type selection.");
-        }
+        if (!in_array($eventType, $allowedEventTypes)) die("Invalid event type.");
     }
 
-    $allowedThemeMotifs = ['Floral', 'Rustic', 'Elegant', 'Beach', 'Modern'];
-    
     if ($themeMotif === 'Others') {
-        if (empty($otherThemeMotif)) {
-            die("Please specify the theme/motif in the 'Other Theme/Motif' field.");
-        }
+        if (empty($otherThemeMotif)) die("Please specify the theme/motif.");
         $themeMotif = $allowedThemeMotifs[0];
     } else {
-        if (!in_array($themeMotif, $allowedThemeMotifs)) {
-            die("Invalid theme/motif selection.");
-        }
+        if (!in_array($themeMotif, $allowedThemeMotifs)) die("Invalid theme/motif.");
     }
 
+    // INSERT into patron
     $patronQuery = "INSERT INTO patron (name, email, contact_number) VALUES (?, ?, ?)";
     $patronStmt = $conn->prepare($patronQuery);
     $patronStmt->bind_param("sss", $name, $email, $contact);
@@ -67,24 +52,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($patronStmt->execute()) {
         $lastPatronId = $conn->insert_id;
 
-        $query = "INSERT INTO inquiry (patron_id, venue, other_venue, event_type, other_event_type, theme_motif, other_theme_motif, message, date, time) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("isssssssss", 
-            $lastPatronId, 
-            $venue, 
-            $otherVenue, 
-            $eventType, 
-            $otherEventType, 
-            $themeMotif, 
-            $otherThemeMotif, 
-            $message, 
-            $date, 
-            $time
+        // INSERT into inquiry
+        $inquiryQuery = "INSERT INTO inquiry (
+            patron_id, venue, other_venue, event_type, other_event_type, theme_motif, other_theme_motif,
+            message, date, time, status, created_by_type
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = $conn->prepare($inquiryQuery);
+        $stmt->bind_param("isssssssssss",
+            $lastPatronId, $venue, $otherVenue, $eventType, $otherEventType,
+            $themeMotif, $otherThemeMotif, $message, $date, $time, $defaultStatus, $createdByType
         );
 
         if ($stmt->execute()) {
-            echo "<script>alert('Reservation successfully made!');</script>";
+            echo "<script>alert('Reservation successfully made!'); window.location.href = 'a_make_reservation.php';</script>";
         } else {
             echo "<script>alert('Error: " . $stmt->error . "');</script>";
         }
@@ -123,8 +104,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container"> 
         <div class="reservation-container">
         <h2>Let's bring your vision to life—just fill out the form.</h2>
-            <form method="POST" action="p_make_reservation.php">
-                <input type="hidden" name="created_by_type" value="admin">
+                <form method="POST" action="">                
+                    <input type="hidden" name="created_by_type" value="admin">
                 <div class="form-group">
                     <label for="name">Name:<span>*</span></label>
                     <input type="text" id="name" name="name" placeholder="First Name, Last Name"required>

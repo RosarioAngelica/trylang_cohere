@@ -2,9 +2,9 @@
 include 'db_connect.php';
 
 $sqli = "SELECT 
-            p.name AS full_name,
-            p.email,
-            p.contact_number,
+            IFNULL(p.name, 'Admin') AS full_name,
+            IFNULL(p.email, '-') AS email,
+            IFNULL(p.contact_number, '-') AS contact_number,
             i.inquiry_id,
             i.time,
             i.date,
@@ -14,9 +14,10 @@ $sqli = "SELECT
             i.other_event_type,
             i.other_theme_motif,
             i.other_venue,
-            i.status
+            i.status,
+            i.created_by_type
         FROM inquiry i
-        JOIN patron p ON i.patron_id = p.patron_id
+        LEFT JOIN patron p ON i.patron_id = p.patron_id
         ORDER BY i.date DESC, i.time DESC";
 
 $result = $conn->query($sqli);
@@ -28,17 +29,14 @@ if ($result && $result->num_rows > 0) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>View Inquiries - Villa Salud</title>
     <link rel="stylesheet" href="../style/a_inquiries.css">
 </head>
-
 <body>
     <header class="header-image"></header>
 
@@ -85,6 +83,7 @@ if ($result && $result->num_rows > 0) {
                                 <th>Other Theme Motif</th>
                                 <th>Other Venue</th>
                                 <th>Status</th>
+                                <th>Submitted By</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -111,13 +110,13 @@ if ($result && $result->num_rows > 0) {
                                             <option value="Cancelled" <?= $inquiry['status'] === 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
                                         </select>
                                     </td>
+                                    <td><?= htmlspecialchars($inquiry['created_by_type'] ?? 'unknown') ?></td>
                                     <td>
                                         <button class="reply-btn" data-index="<?= $index ?>">Reply</button>
                                         <?php if ($inquiry['status'] === 'Completed'): ?>
                                             <button class="undo-btn" data-inquiry-id="<?= $inquiry['inquiry_id'] ?>">Undo</button>
                                         <?php endif; ?>
                                     </td>
-
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -144,5 +143,4 @@ if ($result && $result->num_rows > 0) {
 
     <script src="../script/a_inquiries.js"></script>
 </body>
-
 </html>
