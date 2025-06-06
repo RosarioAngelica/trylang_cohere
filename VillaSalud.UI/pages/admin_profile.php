@@ -18,7 +18,7 @@ $admin_phone = isset($_SESSION["admin_phone"]) ? $_SESSION["admin_phone"] : "N/A
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard - Villa Salud</title>
+  <title>Admin Profile - Villa Salud</title>
   <link rel="stylesheet" href="../style/admin_profile.css">
 </head>
 <body>

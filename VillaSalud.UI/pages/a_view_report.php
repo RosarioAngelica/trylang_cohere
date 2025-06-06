@@ -7,7 +7,7 @@ include 'db_connect.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics Dashboard - Villa Salud</title>
+    <title>View Report - Villa Salud</title>
     <link rel="stylesheet" href="../style/a_view_report.css">
     <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
