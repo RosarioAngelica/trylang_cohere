@@ -190,7 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="free">Free (Green)</option>
                     <option value="full">Fully Booked (Red)</option>
                     <option value="reserved">Reserved (Yellow)</option>
-                    <option value="pending confirmation">Pending (Blue)</option>
+                    <option value="pending confirmation">Pending Confirmation  (Blue)</option>
                     <option value="closed">Closed (Black)</option>
                 </select>
                 <button id="saveStatus">Save</button>
