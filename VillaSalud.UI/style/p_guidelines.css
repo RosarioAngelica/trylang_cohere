@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Playfair Display", serif;
+  background: #fdfaf4;
+}
+
+/* === Header === */
+.header-image {
+  width: 100%;
+  height: 90px;
+  background: url("../assets/background_picture.jpeg") no-repeat center center/cover;
+}
+
+/* === Navbar === */
+.navbar {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  padding: 15px 0;
+  border-bottom: 2px solid #ccc;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+}
+
+.navbar li {
+  display: inline;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 6px 12px;
+  transition: 0.2s ease-in-out;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  color: #007b3d;
+  border-bottom: 2px solid #007b3d;
+}
+
+/* === Main Guidelines Content === */
+.guidelines-content {
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  line-height: 1.7;
+}
+
+.guidelines-content section {
+  margin-bottom: 40px;
+}
+
+.guidelines-content h2 {
+  font-size: 24px;
+  color: #007b3d;
+  border-bottom: 2px solid #007b3d;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+
+.guidelines-content ul {
+  padding-left: 20px;
+}
+
+.guidelines-content li {
+  margin-bottom: 10px;
+}
